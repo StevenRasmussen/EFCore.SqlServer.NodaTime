@@ -12,5 +12,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         public LocalDate Date { get; set; }
 
         public LocalTime ScheduledStart { get; set; }
+
+        public Duration ScheduledDuration { get; set; }
     }
 }

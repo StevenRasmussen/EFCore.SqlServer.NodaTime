@@ -12,6 +12,9 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 {
     public class LocalDateQueryTests : QueryTestBase
     {
+        public LocalDateQueryTests(DatabaseTestFixture databaseTestFixture)
+            : base(databaseTestFixture) { }
+
         [Fact]
         public async Task LocalDate_can_be_used_in_query()
         {

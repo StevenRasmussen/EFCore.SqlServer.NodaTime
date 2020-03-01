@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xunit;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 {
+    [Collection(nameof(DatabaseTestCollection))]
     public abstract class QueryTestBase
     {
-        public QueryTestBase()
+        public QueryTestBase(DatabaseTestFixture databaseTestFixture)
         {
-            this.Db = new RacingContext();
-            this.Db.Database.EnsureDeleted();
-            this.Db.Database.EnsureCreated();
+            this.Db = databaseTestFixture.DbContext;
         }
 
         protected RacingContext Db { get; }

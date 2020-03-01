@@ -11,6 +11,9 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 {
     public class OffsetDateTimeQueryTests : QueryTestBase
     {
+        public OffsetDateTimeQueryTests(DatabaseTestFixture databaseTestFixture)
+            : base(databaseTestFixture) { }
+
         [Fact]
         public async Task OffsetDateTime_can_be_used_in_query()
         {

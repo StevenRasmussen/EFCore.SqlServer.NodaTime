@@ -10,6 +10,9 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 {
     public class InstantQueryTests : QueryTestBase
     {
+        public InstantQueryTests(DatabaseTestFixture databaseTestFixture)
+            : base(databaseTestFixture) { }
+
         [Fact]
         public async Task Instant_can_be_used_in_query()
         {

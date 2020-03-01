@@ -11,6 +11,9 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 {
     public class DurationQueryTests : QueryTestBase
     {
+        public DurationQueryTests(DatabaseTestFixture databaseTestFixture)
+            : base(databaseTestFixture) { }
+
         [Fact]
         public async Task Duration_can_be_used_in_query()
         {

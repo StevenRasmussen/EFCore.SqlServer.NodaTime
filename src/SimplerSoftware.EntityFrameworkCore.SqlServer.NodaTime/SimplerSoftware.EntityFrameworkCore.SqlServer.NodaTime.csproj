@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Steven Rasmussen</Authors>
+    <Company>Simpler Software LLC</Company>
+    <Description>Adds native NodaTime support for EntityFrameworkCore.</Description>
+    <Copyright>© Simpler Software LLC. All rights reserved.</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/StevenRasmussen/EFCore.NodaTime</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;EntityFrameworkCore;EFCore;Noda;NodaTime;Noda Time</PackageTags>
+    <NeutralLanguage>English (United States)</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

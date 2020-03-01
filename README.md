@@ -10,7 +10,7 @@ The following types are supported:
 * LocalTime
 * Duration
 
-As of version 1.0.0, only basic operations are supported.  There is not support for functions related to these types.
+As of version 1.0.0, only basic operations are supported.  There is no support yet for functions related to these types.
 
 To use, simply install the NuGet package:
 ```

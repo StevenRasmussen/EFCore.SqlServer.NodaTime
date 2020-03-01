@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Extensions
+namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
 {
     public static class SqlServerDbContextOptionsBuilderExtensions
     {

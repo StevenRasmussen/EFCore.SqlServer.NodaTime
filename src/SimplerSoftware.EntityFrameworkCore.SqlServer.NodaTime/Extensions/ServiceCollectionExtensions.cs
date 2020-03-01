@@ -32,6 +32,10 @@ namespace Microsoft.Extensions.DependencyInjection
                         // Duration
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>();
                         x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, DurationTypeMappingSourcePlugin>();
+
+                        // LocalDateTime
+                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateTimeMethodCallTranslatorPlugin>();
+                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalDateTimeTypeMappingSourcePlugin>();
                     });
 
             return serviceCollection;

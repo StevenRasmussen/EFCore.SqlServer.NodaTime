@@ -39,15 +39,6 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Infrastructure
                     {
                         throw new InvalidOperationException(Resources.ServicesMissing);
                     }
-
-                    // LocalDate
-                    if (scope.ServiceProvider.GetService<IEnumerable<IMethodCallTranslatorPlugin>>()
-                            ?.Any(s => s is LocalDateMethodCallTranslatorPlugin) != true ||
-                        scope.ServiceProvider.GetService<IEnumerable<IRelationalTypeMappingSourcePlugin>>()
-                           ?.Any(s => s is LocalDateTypeMappingSourcePlugin) != true)
-                    {
-                        throw new InvalidOperationException(Resources.ServicesMissing);
-                    }
                 }
             }
         }

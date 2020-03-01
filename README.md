@@ -14,7 +14,7 @@ As of version 1.0.0, only basic operations are supported.  There is not support 
 
 To use, simply install the NuGet package:
 ```
-Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime -Version 1.0.0
+Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
 ```
 
 Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:

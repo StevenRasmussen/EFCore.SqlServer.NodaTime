@@ -15,5 +15,11 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         protected RacingContext Db { get; }
+
+        protected static string condense(string str)
+        {
+            var split = str.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+            return string.Join(" ", split);
+        }
     }
 }

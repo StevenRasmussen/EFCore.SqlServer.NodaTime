@@ -11,8 +11,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         public DatabaseTestFixture()
         {
             this.DbContext = new RacingContext();
-            this.DbContext.Database.EnsureDeleted();
-            this.DbContext.Database.EnsureCreated();
+            //this.DbContext.Database.EnsureDeleted();
+            //this.DbContext.Database.EnsureCreated();
         }
 
         public RacingContext DbContext { get; }

@@ -10,4 +10,15 @@ The following types are supported:
 * LocalTime
 * Duration
 
-As of version 1.0.0, only basic operations are supported.  There is not support for functions related to these types.
+As of version 1.0.0, only basic operations are supported.  There is no support yet for functions related to these types.
+
+To use, simply install the NuGet package:
+```
+Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
+```
+
+Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:
+```
+options.UseSqlServer("your DB Connection",
+                    x => x.UseNodaTime());
+```

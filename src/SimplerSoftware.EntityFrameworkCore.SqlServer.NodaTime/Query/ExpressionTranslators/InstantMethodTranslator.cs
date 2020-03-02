@@ -20,7 +20,6 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddMinutes), new[] { typeof(Instant), typeof(double) }), "minute" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddSeconds), new[] { typeof(Instant), typeof(double) }), "second" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddMilliseconds), new[] { typeof(Instant), typeof(double) }), "millisecond" },
-
         };
 
         private readonly Dictionary<MethodInfo, string> _methodInfoDatePartMapping = new Dictionary<MethodInfo, string>

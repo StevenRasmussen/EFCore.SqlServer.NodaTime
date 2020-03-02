@@ -9,12 +9,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
     internal class LocalDateTimeMethodCallTranslatorPlugin : IMethodCallTranslatorPlugin
     {
         public LocalDateTimeMethodCallTranslatorPlugin(
-            IRelationalTypeMappingSource typeMappingSource,
             ISqlExpressionFactory sqlExpressionFactory)
         {
             Translators = new IMethodCallTranslator[]
             {
-                new LocalDateTimeMethodTranslator(typeMappingSource, sqlExpressionFactory)
+                new LocalDateTimeMethodTranslator(sqlExpressionFactory)
             };
         }
 

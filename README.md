@@ -29,6 +29,7 @@ options.UseSqlServer("your DB Connection",
 ## DATEADD Support
 The SQL `DATEADD` function is supported for the following types:
 * Instant (extension methods)
+* LocalDateTime (native and some extension methods)
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
 
@@ -57,6 +58,7 @@ await this.Db.RaceResult
 ## DATEPART Support
 The SQL `DATEPART` function is supported for the following types:
 * Instant (extension methods)
+* LocalDateTime (native and some extension methods)
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
 

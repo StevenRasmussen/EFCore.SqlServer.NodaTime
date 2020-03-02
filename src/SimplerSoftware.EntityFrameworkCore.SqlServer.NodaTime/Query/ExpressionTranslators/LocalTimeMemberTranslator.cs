@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {
-    public class LocalTimeMemberTranslator : IMemberTranslator
+    public class LocalTimeMemberTranslator : BaseNodaTimeMemberTranslator
     {
         private static readonly Dictionary<string, string> _datePartMapping
             = new Dictionary<string, string>
@@ -21,30 +21,9 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                 { nameof(LocalTime.NanosecondOfSecond), "nanosecond" },
             };
 
-        private readonly ISqlExpressionFactory _sqlExpressionFactory;
-
         public LocalTimeMemberTranslator([NotNull] ISqlExpressionFactory sqlExpressionFactory)
+            : base(sqlExpressionFactory, typeof(LocalTime), _datePartMapping)
         {
-            _sqlExpressionFactory = sqlExpressionFactory;
-        }
-
-        public SqlExpression Translate(SqlExpression instance, MemberInfo member, Type returnType)
-        {
-            var declaringType = member.DeclaringType;
-            if (declaringType == typeof(LocalTime))
-            {
-                var memberName = member.Name;
-
-                if (_datePartMapping.TryGetValue(memberName, out var datePart))
-                {
-                    return _sqlExpressionFactory.Function(
-                        "DATEPART",
-                        new[] { _sqlExpressionFactory.Fragment(datePart), instance },
-                        returnType);
-                }
-            }
-
-            return null;
         }
     }
 }

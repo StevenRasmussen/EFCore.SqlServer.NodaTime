@@ -9,12 +9,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
     internal class InstantMethodCallTranslatorPlugin : IMethodCallTranslatorPlugin
     {
         public InstantMethodCallTranslatorPlugin(
-            IRelationalTypeMappingSource typeMappingSource,
             ISqlExpressionFactory sqlExpressionFactory)
         {
             Translators = new IMethodCallTranslator[]
             {
-                new InstantMethodTranslator(typeMappingSource, sqlExpressionFactory)
+                new InstantMethodTranslator(sqlExpressionFactory)
             };
         }
 

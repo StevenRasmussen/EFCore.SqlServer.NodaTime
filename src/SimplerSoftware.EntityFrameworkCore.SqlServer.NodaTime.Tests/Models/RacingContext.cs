@@ -31,18 +31,18 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         {
             modelBuilder.Entity<Race>()
                 .HasData(
-                    new Race { Id = 1, Date = new LocalDate(2019, 1, 1), ScheduledStartTime = new LocalTime(8, 0, 0), ScheduledDuration = Duration.FromHours(1), ScheduledStart = new LocalDateTime(2019, 1, 1, 0, 0) },
-                    new Race { Id = 2, Date = new LocalDate(2019, 2, 1), ScheduledStartTime = new LocalTime(9, 0, 0), ScheduledDuration = Duration.FromHours(2), ScheduledStart = new LocalDateTime(2019, 2, 1, 0, 0) },
-                    new Race { Id = 3, Date = new LocalDate(2019, 3, 1), ScheduledStartTime = new LocalTime(10, 0, 0), ScheduledDuration = Duration.FromHours(3), ScheduledStart = new LocalDateTime(2019, 3, 1, 0, 0) },
-                    new Race { Id = 4, Date = new LocalDate(2019, 4, 1), ScheduledStartTime = new LocalTime(11, 0, 0), ScheduledDuration = Duration.FromHours(4), ScheduledStart = new LocalDateTime(2019, 4, 1, 0, 0) },
-                    new Race { Id = 5, Date = new LocalDate(2019, 5, 1), ScheduledStartTime = new LocalTime(12, 0, 0), ScheduledDuration = Duration.FromHours(5), ScheduledStart = new LocalDateTime(2019, 5, 1, 0, 0) },
-                    new Race { Id = 6, Date = new LocalDate(2019, 6, 1), ScheduledStartTime = new LocalTime(13, 0, 0), ScheduledDuration = Duration.FromHours(6), ScheduledStart = new LocalDateTime(2019, 6, 1, 0, 0) },
-                    new Race { Id = 7, Date = new LocalDate(2019, 7, 1), ScheduledStartTime = new LocalTime(14, 0, 0), ScheduledDuration = Duration.FromHours(7), ScheduledStart = new LocalDateTime(2019, 7, 1, 0, 0) },
-                    new Race { Id = 8, Date = new LocalDate(2019, 8, 1), ScheduledStartTime = new LocalTime(15, 0, 0), ScheduledDuration = Duration.FromHours(8), ScheduledStart = new LocalDateTime(2019, 8, 1, 0, 0) },
-                    new Race { Id = 9, Date = new LocalDate(2019, 9, 1), ScheduledStartTime = new LocalTime(16, 0, 0), ScheduledDuration = Duration.FromHours(9), ScheduledStart = new LocalDateTime(2019, 9, 1, 0, 0) },
-                    new Race { Id = 10, Date = new LocalDate(2019, 10, 1), ScheduledStartTime = new LocalTime(17, 0, 0), ScheduledDuration = Duration.FromHours(10), ScheduledStart = new LocalDateTime(2019, 10, 1, 0, 0) },
-                    new Race { Id = 11, Date = new LocalDate(2019, 11, 1), ScheduledStartTime = new LocalTime(18, 0, 0), ScheduledDuration = Duration.FromHours(11), ScheduledStart = new LocalDateTime(2019, 11, 1, 0, 0) },
-                    new Race { Id = 12, Date = new LocalDate(2019, 12, 1), ScheduledStartTime = new LocalTime(19, 0, 0), ScheduledDuration = Duration.FromHours(12), ScheduledStart = new LocalDateTime(2019, 12, 1, 0, 0) }
+                    new Race { Id = 1, Date = new LocalDate(2019, 1, 1), ScheduledStartTime = new LocalTime(8, 0, 0, 0), ScheduledDuration = Duration.FromHours(1), ScheduledStart = new LocalDateTime(2019, 1, 1, 0, 0) },
+                    new Race { Id = 2, Date = new LocalDate(2019, 2, 1), ScheduledStartTime = new LocalTime(9, 1, 1, 1), ScheduledDuration = Duration.FromHours(2), ScheduledStart = new LocalDateTime(2019, 2, 1, 0, 0) },
+                    new Race { Id = 3, Date = new LocalDate(2019, 3, 1), ScheduledStartTime = new LocalTime(10, 2, 2, 2), ScheduledDuration = Duration.FromHours(3), ScheduledStart = new LocalDateTime(2019, 3, 1, 0, 0) },
+                    new Race { Id = 4, Date = new LocalDate(2019, 4, 1), ScheduledStartTime = new LocalTime(11, 3, 3, 3), ScheduledDuration = Duration.FromHours(4), ScheduledStart = new LocalDateTime(2019, 4, 1, 0, 0) },
+                    new Race { Id = 5, Date = new LocalDate(2019, 5, 1), ScheduledStartTime = new LocalTime(12, 4, 4, 4), ScheduledDuration = Duration.FromHours(5), ScheduledStart = new LocalDateTime(2019, 5, 1, 0, 0) },
+                    new Race { Id = 6, Date = new LocalDate(2019, 6, 1), ScheduledStartTime = new LocalTime(13, 5, 5, 5), ScheduledDuration = Duration.FromHours(6), ScheduledStart = new LocalDateTime(2019, 6, 1, 0, 0) },
+                    new Race { Id = 7, Date = new LocalDate(2019, 7, 1), ScheduledStartTime = new LocalTime(14, 6, 6, 6), ScheduledDuration = Duration.FromHours(7), ScheduledStart = new LocalDateTime(2019, 7, 1, 0, 0) },
+                    new Race { Id = 8, Date = new LocalDate(2019, 8, 1), ScheduledStartTime = new LocalTime(15, 7, 7, 7), ScheduledDuration = Duration.FromHours(8), ScheduledStart = new LocalDateTime(2019, 8, 1, 0, 0) },
+                    new Race { Id = 9, Date = new LocalDate(2019, 9, 1), ScheduledStartTime = new LocalTime(16, 8, 8, 8), ScheduledDuration = Duration.FromHours(9), ScheduledStart = new LocalDateTime(2019, 9, 1, 0, 0) },
+                    new Race { Id = 10, Date = new LocalDate(2019, 10, 1), ScheduledStartTime = new LocalTime(17, 9, 9, 9), ScheduledDuration = Duration.FromHours(10), ScheduledStart = new LocalDateTime(2019, 10, 1, 0, 0) },
+                    new Race { Id = 11, Date = new LocalDate(2019, 11, 1), ScheduledStartTime = new LocalTime(18, 10, 10, 10), ScheduledDuration = Duration.FromHours(11), ScheduledStart = new LocalDateTime(2019, 11, 1, 0, 0) },
+                    new Race { Id = 12, Date = new LocalDate(2019, 12, 1), ScheduledStartTime = new LocalTime(19, 11, 11, 11), ScheduledDuration = Duration.FromHours(12), ScheduledStart = new LocalDateTime(2019, 12, 1, 0, 0) }
                 );
 
 

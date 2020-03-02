@@ -9,9 +9,9 @@ using System.Reflection;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {
-    internal class InstantMethodTranslator : IMethodCallTranslator
+    internal class InstantMethodTranslator : BaseNodaTimeMethodCallTranslator
     {
-        private readonly Dictionary<MethodInfo, string> _methodInfoDateAddMapping = new Dictionary<MethodInfo, string>
+        private static readonly Dictionary<MethodInfo, string> _methodInfoDateAddMapping = new Dictionary<MethodInfo, string>
         {
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusYears), new[] { typeof(Instant), typeof(int) }), "year" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusMonths), new[] { typeof(Instant), typeof(int) }), "month" },
@@ -22,7 +22,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusMilliseconds), new[] { typeof(Instant), typeof(double) }), "millisecond" },
         };
 
-        private readonly Dictionary<MethodInfo, string> _methodInfoDatePartMapping = new Dictionary<MethodInfo, string>
+        private static readonly Dictionary<MethodInfo, string> _methodInfoDatePartMapping = new Dictionary<MethodInfo, string>
         {
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.Year), new[] { typeof(Instant), }), "year" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.Quarter), new[] { typeof(Instant), }), "quarter" },
@@ -41,49 +41,9 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.IsoWeek), new[] { typeof(Instant), }), "iso_week" },
         };
 
-        private readonly ISqlExpressionFactory _sqlExpressionFactory;
-
-        public InstantMethodTranslator(
-            ISqlExpressionFactory sqlExpressionFactory)
+        public InstantMethodTranslator(ISqlExpressionFactory sqlExpressionFactory)
+            : base(sqlExpressionFactory, null, _methodInfoDateAddMapping, _methodInfoDatePartMapping)
         {
-            _sqlExpressionFactory = sqlExpressionFactory;
-        }
-
-        public virtual SqlExpression Translate(SqlExpression instance, MethodInfo method, IReadOnlyList<SqlExpression> arguments)
-        {
-            if (_methodInfoDateAddMapping.TryGetValue(method, out var dateAddPart))
-            {
-                return !dateAddPart.Equals("year")
-                    && !dateAddPart.Equals("month")
-                    && arguments[0] is SqlConstantExpression sqlConstant
-                    && ((double)sqlConstant.Value >= int.MaxValue
-                        || (double)sqlConstant.Value <= int.MinValue)
-                        ? null
-                        : _sqlExpressionFactory.Function(
-                            "DATEADD",
-                            new[]
-                            {
-                                _sqlExpressionFactory.Fragment(dateAddPart),
-                                _sqlExpressionFactory.Convert(arguments[1], typeof(int)),
-                                arguments[0]
-                            },
-                            arguments[0].Type,
-                            arguments[0].TypeMapping);
-            }
-            else if (_methodInfoDatePartMapping.TryGetValue(method, out var datePart))
-            {
-                return _sqlExpressionFactory.Function(
-                            "DATEPART",
-                            new[]
-                            {
-                                _sqlExpressionFactory.Fragment(datePart),
-                                arguments[0]
-                            },
-                            method.ReturnType,
-                            null);
-            }
-
-            return null;
         }
     }
 }

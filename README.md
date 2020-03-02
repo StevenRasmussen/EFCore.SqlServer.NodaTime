@@ -10,6 +10,9 @@ The following types are supported:
 * LocalTime
 * Duration
 
+## Unit Tests
+All types and their methods have unit tests written to verify that the SQL is translated as expected. See individual tests for more information.
+
 ## Usage
 To use, simply install the NuGet package:
 ```shell
@@ -27,6 +30,7 @@ options.UseSqlServer("your DB Connection",
 The SQL `DATEADD` function is supported for the following types:
 * Instant (extension methods)
 * LocalDate (native and some extension methods)
+* LocalTime (native and some extension methods)
 
 ### Supported Methods
 * PlusYears
@@ -54,6 +58,7 @@ await this.Db.RaceResult
 The SQL `DATEPART` function is supported for the following types:
 * Instant (extension methods)
 * LocalDate (native and some extension methods)
+* LocalTime (native and some extension methods)
 
 ### Supported Methods
 * Year

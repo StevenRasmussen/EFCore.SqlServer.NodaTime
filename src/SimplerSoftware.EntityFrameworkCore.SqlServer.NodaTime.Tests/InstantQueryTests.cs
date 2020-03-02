@@ -25,7 +25,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddYears()
+        public async Task Instant_PlusYears()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusYears(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -37,7 +37,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddMonths()
+        public async Task Instant_PlusMonths()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMonths(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -49,7 +49,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddDays()
+        public async Task Instant_PlusDays()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusDays(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -61,7 +61,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddHours()
+        public async Task Instant_PlusHours()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusHours(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -73,7 +73,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddMinutes()
+        public async Task Instant_PlusMinutes()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMinutes(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -85,7 +85,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddSeconds()
+        public async Task Instant_PlusSeconds()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusSeconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
@@ -97,7 +97,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_AddMilliseconds()
+        public async Task Instant_PlusMilliseconds()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMilliseconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 

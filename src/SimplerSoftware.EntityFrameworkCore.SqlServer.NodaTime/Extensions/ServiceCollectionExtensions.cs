@@ -24,12 +24,12 @@ namespace Microsoft.Extensions.DependencyInjection
                         // LocalDate
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateMethodCallTranslatorPlugin>();
                         x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalDateTypeMappingSourcePlugin>();
-                        x.TryAddSingletonEnumerable<IMemberTranslatorProvider, LocalDateMemberTranslatorPlugin>();
 
                         // LocalTime
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalTimeMethodCallTranslatorPlugin>();
                         x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalTimeTypeMappingSourcePlugin>();
-
+                       
+                        
                         // Duration
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>();
                         x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, DurationTypeMappingSourcePlugin>();
@@ -41,6 +41,9 @@ namespace Microsoft.Extensions.DependencyInjection
                         // OffsetDateTime
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>();
                         x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, OffsetDateTimeTypeMappingSourcePlugin>();
+
+                        // All MemberTranslators
+                        x.TryAddSingletonEnumerable<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>();
                     });
 
             return serviceCollection;

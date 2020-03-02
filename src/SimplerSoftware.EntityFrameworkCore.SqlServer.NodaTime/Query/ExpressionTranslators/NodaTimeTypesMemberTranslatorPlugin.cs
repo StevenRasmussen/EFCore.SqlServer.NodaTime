@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {
-    public class LocalDateMemberTranslatorPlugin : RelationalMemberTranslatorProvider
+    public class NodaTimeTypesMemberTranslatorPlugin : RelationalMemberTranslatorProvider
     {
-        public LocalDateMemberTranslatorPlugin([NotNull] RelationalMemberTranslatorProviderDependencies dependencies) 
+        public NodaTimeTypesMemberTranslatorPlugin([NotNull] RelationalMemberTranslatorProviderDependencies dependencies) 
             : base(dependencies)
         {
             var sqlExpressionFactory = dependencies.SqlExpressionFactory;
@@ -17,6 +17,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                 new IMemberTranslator[]
                 {
                     new LocalDateMemberTranslator(sqlExpressionFactory),
+                    new LocalTimeMemberTranslator(sqlExpressionFactory),
                 });
         }
     }

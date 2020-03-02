@@ -24,33 +24,36 @@ options.UseSqlServer("your DB Connection",
                     x => x.UseNodaTime());
 ```
 ## DATEADD Support
-Support for the SQL `DATEADD` function is added via extension methods for the following types:
-* Instant
+The SQL `DATEADD` function is supported for the following types:
+* Instant (extension methods)
+* LocalDate (native and some extension methods)
 
 ### Supported Methods
-* AddYears
-* AddMonths
-* AddDays
-* AddHours
-* AddMinutes
-* AddSeconds
-* AddMilliseconds
+* PlusYears
+* PlusMonths
+* PlusDays
+* PlusHours
+* PlusMinutes
+* PlusSeconds
+* PlusMilliseconds
 
 ```csharp
 Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
-// AddYears
+// PlusYears
 await this.Db.RaceResult
-    .Where(r => r.StartTime.AddYears(1) >= Instant.FromUtc(2019, 7, 1, 1, 0))
+    .Where(r => r.StartTime.PlusYears(1) >= Instant.FromUtc(2019, 7, 1, 1, 0))
     .ToListAsync();
+
 // Translates to: 
 // SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] 
 // FROM [RaceResult] AS [r] WHERE DATEADD(year, CAST(1 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'
 ```
 
 ## DATEPART Support
-Support for the SQL `DATEPART` function is added via extension methods for the following types:
-* Instant
+The SQL `DATEPART` function is supported for the following types:
+* Instant (extension methods)
+* LocalDate (native and some extension methods)
 
 ### Supported Methods
 * Year

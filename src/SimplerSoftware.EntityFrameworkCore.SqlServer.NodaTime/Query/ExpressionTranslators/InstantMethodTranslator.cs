@@ -13,13 +13,13 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
     {
         private readonly Dictionary<MethodInfo, string> _methodInfoDateAddMapping = new Dictionary<MethodInfo, string>
         {
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddYears), new[] { typeof(Instant), typeof(int) }), "year" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddMonths), new[] { typeof(Instant), typeof(int) }), "month" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddDays), new[] { typeof(Instant), typeof(double) }), "day" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddHours), new[] { typeof(Instant), typeof(double) }), "hour" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddMinutes), new[] { typeof(Instant), typeof(double) }), "minute" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddSeconds), new[] { typeof(Instant), typeof(double) }), "second" },
-            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.AddMilliseconds), new[] { typeof(Instant), typeof(double) }), "millisecond" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusYears), new[] { typeof(Instant), typeof(int) }), "year" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusMonths), new[] { typeof(Instant), typeof(int) }), "month" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusDays), new[] { typeof(Instant), typeof(double) }), "day" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusHours), new[] { typeof(Instant), typeof(double) }), "hour" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusMinutes), new[] { typeof(Instant), typeof(double) }), "minute" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusSeconds), new[] { typeof(Instant), typeof(double) }), "second" },
+            { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.PlusMilliseconds), new[] { typeof(Instant), typeof(double) }), "millisecond" },
         };
 
         private readonly Dictionary<MethodInfo, string> _methodInfoDatePartMapping = new Dictionary<MethodInfo, string>

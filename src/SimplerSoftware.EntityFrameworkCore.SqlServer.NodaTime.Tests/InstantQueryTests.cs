@@ -27,7 +27,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddYears()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddYears(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusYears(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(year, CAST(1 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -39,7 +39,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddMonths()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddMonths(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMonths(1) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(month, CAST(1 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -51,7 +51,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddDays()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddDays(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusDays(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(day, CAST(45.0E0 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -63,7 +63,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddHours()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddHours(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusHours(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(hour, CAST(45.0E0 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -75,7 +75,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddMinutes()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddMinutes(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMinutes(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(minute, CAST(45.0E0 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -87,7 +87,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddSeconds()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddSeconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusSeconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(second, CAST(45.0E0 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),
@@ -99,7 +99,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         [Fact]
         public async Task Instant_AddMilliseconds()
         {
-            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.AddMilliseconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTime.PlusMilliseconds(45) >= Instant.FromUtc(2019, 7, 1, 1, 0)).ToListAsync();
 
             Assert.Equal(
               condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEADD(millisecond, CAST(45.0E0 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'"),

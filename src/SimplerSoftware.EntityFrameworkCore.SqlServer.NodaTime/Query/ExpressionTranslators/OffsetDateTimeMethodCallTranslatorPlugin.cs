@@ -9,12 +9,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
     internal class OffsetDateTimeMethodCallTranslatorPlugin : IMethodCallTranslatorPlugin
     {
         public OffsetDateTimeMethodCallTranslatorPlugin(
-            IRelationalTypeMappingSource typeMappingSource,
             ISqlExpressionFactory sqlExpressionFactory)
         {
             Translators = new IMethodCallTranslator[]
             {
-                new OffsetDateTimeMethodTranslator(typeMappingSource, sqlExpressionFactory)
+                new OffsetDateTimeMethodTranslator(sqlExpressionFactory)
             };
         }
 

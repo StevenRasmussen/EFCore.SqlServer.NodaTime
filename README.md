@@ -1,4 +1,4 @@
-# EFCore.NodaTime
+# EFCore.SqlServer.NodaTime
 
 Adds native support to EntityFrameworkCore for SQL Server for the [NodaTime](https://nodatime.org/) types.
 

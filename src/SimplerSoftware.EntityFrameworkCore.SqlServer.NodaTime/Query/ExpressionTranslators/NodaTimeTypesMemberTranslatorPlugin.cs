@@ -19,6 +19,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                     new LocalDateMemberTranslator(sqlExpressionFactory),
                     new LocalTimeMemberTranslator(sqlExpressionFactory),
                     new LocalDateTimeMemberTranslator(sqlExpressionFactory),
+                    new DurationMemberTranslator(sqlExpressionFactory),
                 });
         }
     }

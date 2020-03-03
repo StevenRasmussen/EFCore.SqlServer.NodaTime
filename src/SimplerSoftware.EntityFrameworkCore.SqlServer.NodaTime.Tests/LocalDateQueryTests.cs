@@ -18,8 +18,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
             var raceResults = await this.Db.Race.Where(r => r.Date >= new LocalDate(2019, 7, 1)).ToListAsync();
 
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE [r].[Date] >= '2019-07-01'"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE [r].[Date] >= '2019-07-01'"),
+                condense(this.Db.Sql));
 
             Assert.Equal(6, raceResults.Count);
         }
@@ -42,8 +42,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
             var raceResults = await this.Db.Race.Where(r => r.Date.PlusMonths(1) >= new LocalDate(2019, 7, 1)).ToListAsync();
 
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(month, CAST(1 AS int), [r].[Date]) >= '2019-07-01'"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(month, CAST(1 AS int), [r].[Date]) >= '2019-07-01'"),
+                condense(this.Db.Sql));
 
             Assert.Equal(7, raceResults.Count);
         }
@@ -54,8 +54,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
             var raceResults = await this.Db.Race.Where(r => r.Date.PlusDays(45) >= new LocalDate(2019, 7, 1)).ToListAsync();
 
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(day, CAST(45 AS int), [r].[Date]) >= '2019-07-01'"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(day, CAST(45 AS int), [r].[Date]) >= '2019-07-01'"),
+                condense(this.Db.Sql));
 
             Assert.Equal(7, raceResults.Count);
         }
@@ -66,8 +66,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
             var raceResults = await this.Db.Race.Where(r => r.Date.PlusWeeks(5) >= new LocalDate(2019, 7, 1)).ToListAsync();
 
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(week, CAST(5 AS int), [r].[Date]) >= '2019-07-01'"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(week, CAST(5 AS int), [r].[Date]) >= '2019-07-01'"),
+                condense(this.Db.Sql));
 
             Assert.Equal(7, raceResults.Count);
         }
@@ -78,8 +78,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
             var raceResults = await this.Db.Race.Where(r => r.Date.PlusQuarters(1) >= new LocalDate(2019, 7, 1)).ToListAsync();
 
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(quarter, CAST(1 AS int), [r].[Date]) >= '2019-07-01'"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEADD(quarter, CAST(1 AS int), [r].[Date]) >= '2019-07-01'"),
+                condense(this.Db.Sql));
 
             Assert.Equal(9, raceResults.Count);
         }
@@ -89,8 +89,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         {
             var raceResults = await this.Db.Race.Where(r => r.Date.Year == 2019).ToListAsync();
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(year, [r].[Date]) = 2019"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(year, [r].[Date]) = 2019"),
+                condense(this.Db.Sql));
 
             Assert.Equal(12, raceResults.Count);
         }
@@ -100,8 +100,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         {
             var raceResults = await this.Db.Race.Where(r => r.Date.Quarter() == 4).ToListAsync();
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(quarter, [r].[Date]) = 4"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(quarter, [r].[Date]) = 4"),
+                condense(this.Db.Sql));
 
             Assert.Equal(3, raceResults.Count);
         }
@@ -111,8 +111,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         {
             var raceResults = await this.Db.Race.Where(r => r.Date.Month == 12).ToListAsync();
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(month, [r].[Date]) = 12"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(month, [r].[Date]) = 12"),
+                condense(this.Db.Sql));
 
             Assert.Single(raceResults);
         }
@@ -133,8 +133,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         {
             var raceResults = await this.Db.Race.Where(r => r.Date.Day == 1).ToListAsync();
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(day, [r].[Date]) = 1"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(day, [r].[Date]) = 1"),
+                condense(this.Db.Sql));
 
             Assert.Equal(12, raceResults.Count);
         }
@@ -144,8 +144,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         {
             var raceResults = await this.Db.Race.Where(r => r.Date.Week() == 1).ToListAsync();
             Assert.Equal(
-              condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(week, [r].[Date]) = 1"),
-              condense(this.Db.Sql));
+                condense(@"SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r] WHERE DATEPART(week, [r].[Date]) = 1"),
+                condense(this.Db.Sql));
 
             Assert.Single(raceResults);
         }

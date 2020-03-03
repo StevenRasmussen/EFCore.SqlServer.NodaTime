@@ -9,12 +9,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
     internal class DurationMethodCallTranslatorPlugin : IMethodCallTranslatorPlugin
     {
         public DurationMethodCallTranslatorPlugin(
-            IRelationalTypeMappingSource typeMappingSource,
             ISqlExpressionFactory sqlExpressionFactory)
         {
             Translators = new IMethodCallTranslator[]
             {
-                new DurationMethodTranslator(typeMappingSource, sqlExpressionFactory)
+                new DurationMethodTranslator(sqlExpressionFactory)
             };
         }
 

@@ -32,6 +32,7 @@ The SQL `DATEADD` function is supported for the following types:
 * LocalDateTime (native and some extension methods)
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
+* Duration (native and some extension methods)
 
 ### Supported Methods
 * PlusYears
@@ -61,6 +62,7 @@ The SQL `DATEPART` function is supported for the following types:
 * LocalDateTime (native and some extension methods)
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
+* Duration (native and some extension methods)
 
 ### Supported Methods
 * Year

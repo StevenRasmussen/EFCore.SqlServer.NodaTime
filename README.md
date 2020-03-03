@@ -1,6 +1,6 @@
 # EFCore.NodaTime
 
-Adds native support to EntityFrameworkCore for the [NodaTime](https://nodatime.org/) types.
+Adds native support to EntityFrameworkCore for SQL Server for the [NodaTime](https://nodatime.org/) types.
 
 The following types are supported:
 * Instant
@@ -26,6 +26,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 options.UseSqlServer("your DB Connection",
                     x => x.UseNodaTime());
 ```
+
 ## DATEADD Support
 The SQL `DATEADD` function is supported for the following types:
 * Instant (extension methods)
@@ -34,6 +35,11 @@ The SQL `DATEADD` function is supported for the following types:
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
 * Duration (native and some extension methods)
+
+**Note**: Please add a using statement in order to use the extension methods:
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+```
 
 ### Supported Methods
 * PlusYears
@@ -65,6 +71,11 @@ The SQL `DATEPART` function is supported for the following types:
 * LocalDate (native and some extension methods)
 * LocalTime (native and some extension methods)
 * Duration (native and some extension methods)
+
+**Note**: Please add a using statement in order to use the extension methods:
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+```
 
 ### Supported Methods
 * Year

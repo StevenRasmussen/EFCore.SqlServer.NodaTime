@@ -16,5 +16,4 @@ jobs:
     - name: Build with dotnet
       run: dotnet build "./src/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.sln" --configuration Release
     - name: Execute Tests
-      run: dotnet test "./src/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.csproj
-" --configuration Release
+      run: dotnet test "./src/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.csproj" --configuration Release

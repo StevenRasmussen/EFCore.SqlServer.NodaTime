@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime/workflows/.NET%20Core/badge.svg?branch=master)
+
 # EFCore.SqlServer.NodaTime
 
 Adds native support to EntityFrameworkCore for SQL Server for the [NodaTime](https://nodatime.org/) types.

@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
-using Microsoft.EntityFrameworkCore.Storage;
 using NodaTime;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {
@@ -27,8 +23,84 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(DurationExtensions).GetRuntimeMethod(nameof(DurationExtensions.Microseconds), new[] { typeof(Duration) }), "microsecond" },
         };
 
+        private static readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping = new Dictionary<MethodInfo, string>
+        {
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffHour),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "HOUR"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffHour),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "HOUR"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMinute),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "MINUTE"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMinute),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "MINUTE"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffSecond),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "SECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffSecond),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "SECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMillisecond),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "MILLISECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMillisecond),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "MILLISECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMicrosecond),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "MICROSECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMicrosecond),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "MICROSECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffNanosecond),
+                    new[] { typeof(DbFunctions), typeof(Duration), typeof(Duration) }),
+                "NANOSECOND"
+            },
+            {
+                typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffNanosecond),
+                    new[] { typeof(DbFunctions), typeof(Duration?), typeof(Duration?) }),
+                "NANOSECOND"
+            },
+        };
+
         public DurationMethodTranslator(ISqlExpressionFactory sqlExpressionFactory)
-            :base(sqlExpressionFactory, null, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping)
+            : base(sqlExpressionFactory, null, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping)
         {
         }
     }

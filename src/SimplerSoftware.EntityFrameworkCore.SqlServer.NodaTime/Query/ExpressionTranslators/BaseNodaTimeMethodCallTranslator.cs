@@ -14,22 +14,25 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         private readonly Dictionary<MethodInfo, string> _methodInfoDateAddMapping;
         private readonly Dictionary<MethodInfo, string> _methodInfoDateAddExtensionMapping;
         private readonly Dictionary<MethodInfo, string> _methodInfoDatePartExtensionMapping;
+        private readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping;
 
         public BaseNodaTimeMethodCallTranslator(
             ISqlExpressionFactory sqlExpressionFactory,
             Dictionary<MethodInfo, string> methodInfoDateAddMapping,
             Dictionary<MethodInfo, string> methodInfoDateAddExtensionMapping,
-            Dictionary<MethodInfo, string> methodInfoDatePartExtensionMapping)
+            Dictionary<MethodInfo, string> methodInfoDatePartExtensionMapping,
+            Dictionary<MethodInfo, string> methodInfoDateDiffMapping)
         {
             _sqlExpressionFactory = sqlExpressionFactory;
-            _methodInfoDateAddMapping = methodInfoDateAddMapping ?? new Dictionary<MethodInfo, string>();
-            _methodInfoDateAddExtensionMapping = methodInfoDateAddExtensionMapping ?? new Dictionary<MethodInfo, string>();
-            _methodInfoDatePartExtensionMapping = methodInfoDatePartExtensionMapping ?? new Dictionary<MethodInfo, string>();
+            _methodInfoDateAddMapping = methodInfoDateAddMapping;
+            _methodInfoDateAddExtensionMapping = methodInfoDateAddExtensionMapping;
+            _methodInfoDatePartExtensionMapping = methodInfoDatePartExtensionMapping;
+            _methodInfoDateDiffMapping = methodInfoDateDiffMapping;
         }
 
         public SqlExpression Translate(SqlExpression instance, MethodInfo method, IReadOnlyList<SqlExpression> arguments)
         {
-            if (_methodInfoDateAddMapping.TryGetValue(method, out var dateAddPart))
+            if (_methodInfoDateAddMapping != null && _methodInfoDateAddMapping.TryGetValue(method, out var dateAddPart))
             {
                 return arguments[0] is SqlConstantExpression sqlConstant
                     && ((sqlConstant.Value is double && ((double)sqlConstant.Value >= int.MaxValue || (double)sqlConstant.Value <= int.MinValue))
@@ -46,7 +49,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                             instance.Type,
                             instance.TypeMapping);
             }
-            else if (_methodInfoDateAddExtensionMapping.TryGetValue(method, out var dateAddExtensionPart))
+            else if (_methodInfoDateAddExtensionMapping != null && _methodInfoDateAddExtensionMapping.TryGetValue(method, out var dateAddExtensionPart))
             {
                 return arguments[1] is SqlConstantExpression sqlConstant
                     && ((sqlConstant.Value is double && ((double)sqlConstant.Value >= int.MaxValue || (double)sqlConstant.Value <= int.MinValue))
@@ -63,7 +66,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                             arguments[0].Type,
                             arguments[0].TypeMapping);
             }
-            else if (_methodInfoDatePartExtensionMapping.TryGetValue(method, out var datePart))
+            else if (_methodInfoDatePartExtensionMapping != null && _methodInfoDatePartExtensionMapping.TryGetValue(method, out var datePart))
             {
                 return _sqlExpressionFactory.Function(
                             "DATEPART",
@@ -74,6 +77,21 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                             },
                             method.ReturnType,
                             null);
+            }
+            else if (_methodInfoDateDiffMapping != null && _methodInfoDateDiffMapping.TryGetValue(method, out var dateDiffDatePart))
+            {
+                var startDate = arguments[1];
+                var endDate = arguments[2];
+                var typeMapping = ExpressionExtensions.InferTypeMapping(startDate, endDate);
+
+                startDate = _sqlExpressionFactory.ApplyTypeMapping(startDate, typeMapping);
+                endDate = _sqlExpressionFactory.ApplyTypeMapping(endDate, typeMapping);
+
+                return _sqlExpressionFactory.Function(
+                    "DATEDIFF",
+                    new[] { _sqlExpressionFactory.Fragment(dateDiffDatePart), startDate, endDate },
+                    method.ReturnType,
+                    null);
             }
             return null;
         }

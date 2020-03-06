@@ -21,6 +21,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int? DateDiffMonth(this DbFunctions _, Instant? startDate, Instant? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
+        public static int DateDiffWeek(this DbFunctions _, Instant startDate, Instant endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static int? DateDiffWeek(this DbFunctions _, Instant? startDate, Instant? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
         public static int DateDiffDay(this DbFunctions _, Instant startDate, Instant endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
@@ -63,10 +69,28 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int? DateDiffNanosecond(this DbFunctions _, Instant? startDate, Instant? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int DateDiffWeek(this DbFunctions _, Instant startDate, Instant endDate)
+        public static long DateDiffSecondBig(this DbFunctions _, Instant startDate, Instant endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffSecondBig(this DbFunctions _, Instant? startDate, Instant? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMillisecondBig(this DbFunctions _, Instant startDate, Instant endDate)
            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int? DateDiffWeek(this DbFunctions _, Instant? startDate, Instant? endDate)
+        public static long? DateDiffMillisecondBig(this DbFunctions _, Instant? startDate, Instant? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMicrosecondBig(this DbFunctions _, Instant startDate, Instant endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMicrosecondBig(this DbFunctions _, Instant? startDate, Instant? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffNanosecondBig(this DbFunctions _, Instant startDate, Instant endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffNanosecondBig(this DbFunctions _, Instant? startDate, Instant? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         // OffsetDateTime
@@ -80,6 +104,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         public static int? DateDiffMonth(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static int DateDiffWeek(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static int? DateDiffWeek(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         public static int DateDiffDay(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
@@ -124,10 +154,28 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int? DateDiffNanosecond(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int DateDiffWeek(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
+        public static long DateDiffSecondBig(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int? DateDiffWeek(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
+        public static long? DateDiffSecondBig(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMillisecondBig(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMillisecondBig(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMicrosecondBig(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMicrosecondBig(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffNanosecondBig(this DbFunctions _, OffsetDateTime startDate, OffsetDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffNanosecondBig(this DbFunctions _, OffsetDateTime? startDate, OffsetDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         // Local Date Time
@@ -141,6 +189,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         public static int? DateDiffMonth(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static int DateDiffWeek(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
+          => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static int? DateDiffWeek(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         public static int DateDiffDay(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
@@ -185,10 +239,28 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int? DateDiffNanosecond(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int DateDiffWeek(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
+        public static long DateDiffSecondBig(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
-        public static int? DateDiffWeek(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
+        public static long? DateDiffSecondBig(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMillisecondBig(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMillisecondBig(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMicrosecondBig(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMicrosecondBig(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffNanosecondBig(this DbFunctions _, LocalDateTime startDate, LocalDateTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffNanosecondBig(this DbFunctions _, LocalDateTime? startDate, LocalDateTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         //Local Date 
@@ -253,6 +325,30 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int? DateDiffNanosecond(this DbFunctions _, LocalTime? startDate, LocalTime? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
+        public static long DateDiffSecondBig(this DbFunctions _, LocalTime startDate, LocalTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffSecondBig(this DbFunctions _, LocalTime? startDate, LocalTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMillisecondBig(this DbFunctions _, LocalTime startDate, LocalTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMillisecondBig(this DbFunctions _, LocalTime? startDate, LocalTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMicrosecondBig(this DbFunctions _, LocalTime startDate, LocalTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMicrosecondBig(this DbFunctions _, LocalTime? startDate, LocalTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffNanosecondBig(this DbFunctions _, LocalTime startDate, LocalTime endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffNanosecondBig(this DbFunctions _, LocalTime? startDate, LocalTime? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
         // Duration
         public static int DateDiffHour(this DbFunctions _, Duration startDate, Duration endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
@@ -288,6 +384,30 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
 
         public static int? DateDiffNanosecond(this DbFunctions _, Duration? startDate, Duration? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffSecondBig(this DbFunctions _, Duration startDate, Duration endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffSecondBig(this DbFunctions _, Duration? startDate, Duration? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMillisecondBig(this DbFunctions _, Duration startDate, Duration endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMillisecondBig(this DbFunctions _, Duration? startDate, Duration? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffMicrosecondBig(this DbFunctions _, Duration startDate, Duration endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffMicrosecondBig(this DbFunctions _, Duration? startDate, Duration? endDate)
+            => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long DateDiffNanosecondBig(this DbFunctions _, Duration startDate, Duration endDate)
+           => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+
+        public static long? DateDiffNanosecondBig(this DbFunctions _, Duration? startDate, Duration? endDate)
             => throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
     }
 }

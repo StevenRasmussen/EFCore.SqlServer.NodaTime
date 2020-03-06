@@ -34,7 +34,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
 
         public static OffsetDateTime PlusMicroseconds(this OffsetDateTime offsetDateTime, double microseconds)
         {
-            return offsetDateTime.Plus(Duration.FromNanoseconds(microseconds * 1000));
+            var result =  offsetDateTime.Plus(Duration.FromNanoseconds(microseconds * 1000));
+            return result;
         }
 
         public static int Quarter(this OffsetDateTime offsetDateTime)
@@ -65,6 +66,15 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         public static int IsoWeek(this OffsetDateTime offsetDateTime)
         {
             throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+        }
+
+        public static OffsetDateTime FromParts(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, int nanosecond, int offsetInMinutes)
+        {
+            var result = OffsetDateTime.FromDateTimeOffset(new DateTimeOffset(new DateTime(year, month, day, hour, minute, second, millisecond), TimeSpan.FromMinutes(offsetInMinutes)))
+                .PlusMicroseconds(microsecond)
+                .PlusNanoseconds(nanosecond);
+
+            return result;
         }
     }
 }

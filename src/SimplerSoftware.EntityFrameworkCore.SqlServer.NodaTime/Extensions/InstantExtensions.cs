@@ -114,5 +114,13 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
         {
             throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
         }
+
+        public static Instant FromParts(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, int nanosecond)
+        {
+            return Instant.FromUtc(year, month, day, hour, minute)
+                .PlusMilliseconds(millisecond)
+                .PlusNanoseconds(microsecond * 1000)
+                .PlusNanoseconds(nanosecond);
+        }
     }
 }

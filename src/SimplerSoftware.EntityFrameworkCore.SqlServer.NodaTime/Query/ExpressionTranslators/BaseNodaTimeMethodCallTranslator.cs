@@ -15,19 +15,22 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         private readonly Dictionary<MethodInfo, string> _methodInfoDateAddExtensionMapping;
         private readonly Dictionary<MethodInfo, string> _methodInfoDatePartExtensionMapping;
         private readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping;
+        private readonly Dictionary<MethodInfo, string> _methodInfoDateDiffBigMapping;
 
         public BaseNodaTimeMethodCallTranslator(
             ISqlExpressionFactory sqlExpressionFactory,
             Dictionary<MethodInfo, string> methodInfoDateAddMapping,
             Dictionary<MethodInfo, string> methodInfoDateAddExtensionMapping,
             Dictionary<MethodInfo, string> methodInfoDatePartExtensionMapping,
-            Dictionary<MethodInfo, string> methodInfoDateDiffMapping)
+            Dictionary<MethodInfo, string> methodInfoDateDiffMapping,
+            Dictionary<MethodInfo, string> methodInfoDateDiffBigMapping)
         {
             _sqlExpressionFactory = sqlExpressionFactory;
             _methodInfoDateAddMapping = methodInfoDateAddMapping;
             _methodInfoDateAddExtensionMapping = methodInfoDateAddExtensionMapping;
             _methodInfoDatePartExtensionMapping = methodInfoDatePartExtensionMapping;
             _methodInfoDateDiffMapping = methodInfoDateDiffMapping;
+            _methodInfoDateDiffBigMapping = methodInfoDateDiffBigMapping;
         }
 
         public SqlExpression Translate(SqlExpression instance, MethodInfo method, IReadOnlyList<SqlExpression> arguments)
@@ -90,6 +93,21 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                 return _sqlExpressionFactory.Function(
                     "DATEDIFF",
                     new[] { _sqlExpressionFactory.Fragment(dateDiffDatePart), startDate, endDate },
+                    method.ReturnType,
+                    null);
+            }
+            else if (_methodInfoDateDiffBigMapping != null && _methodInfoDateDiffBigMapping.TryGetValue(method, out var dateDiffBigDatePart))
+            {
+                var startDate = arguments[1];
+                var endDate = arguments[2];
+                var typeMapping = ExpressionExtensions.InferTypeMapping(startDate, endDate);
+
+                startDate = _sqlExpressionFactory.ApplyTypeMapping(startDate, typeMapping);
+                endDate = _sqlExpressionFactory.ApplyTypeMapping(endDate, typeMapping);
+
+                return _sqlExpressionFactory.Function(
+                    "DATEDIFF_BIG",
+                    new[] { _sqlExpressionFactory.Fragment(dateDiffBigDatePart), startDate, endDate },
                     method.ReturnType,
                     null);
             }

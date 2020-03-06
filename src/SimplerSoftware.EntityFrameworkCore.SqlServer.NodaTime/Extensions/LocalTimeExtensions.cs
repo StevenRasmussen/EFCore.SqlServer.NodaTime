@@ -9,12 +9,19 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
     {
         public static LocalTime PlusMicroseconds(this LocalTime localTime, long microseconds)
         {
-            throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+            return localTime.PlusNanoseconds(microseconds * 1000);
         }
 
         public static int Microsecond(this LocalTime localTime)
         {
             throw new NotImplementedException($"This method is available only for consuming via LINQ for EntityFramework translation to SQL.");
+        }
+
+        public static LocalTime FromParts(int hour, int minute, int second, int millisecond, int microsecond, int nanosecond)
+        {
+            return new LocalTime(hour, minute, second, millisecond)
+                .PlusMicroseconds(microsecond)
+                .PlusNanoseconds(nanosecond);
         }
     }
 }

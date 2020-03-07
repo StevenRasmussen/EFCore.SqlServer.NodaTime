@@ -162,49 +162,49 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         {
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffSecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigSecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime), typeof(LocalDateTime) }),
                 "SECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffSecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigSecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime?), typeof(LocalDateTime?) }),
                 "SECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMillisecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigMillisecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime), typeof(LocalDateTime) }),
                 "MILLISECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMillisecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigMillisecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime?), typeof(LocalDateTime?) }),
                 "MILLISECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMicrosecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigMicrosecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime), typeof(LocalDateTime) }),
                 "MICROSECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffMicrosecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigMicrosecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime?), typeof(LocalDateTime?) }),
                 "MICROSECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffNanosecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigNanosecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime), typeof(LocalDateTime) }),
                 "NANOSECOND"
             },
             {
                 typeof(SqlServerNodaTimeDbFunctionsExtensions).GetRuntimeMethod(
-                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffNanosecondBig),
+                    nameof(SqlServerNodaTimeDbFunctionsExtensions.DateDiffBigNanosecond),
                     new[] { typeof(DbFunctions), typeof(LocalDateTime?), typeof(LocalDateTime?) }),
                 "NANOSECOND"
             },

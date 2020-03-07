@@ -272,5 +272,115 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
             Assert.Single(raceResults);
         }
+
+        [Fact]
+        public async Task Instant_DateDiff_Year()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffYear(r.StartTime, Instant.FromUtc(2020, 1, 1, 0, 0)) >= 1).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(YEAR, [r].[StartTime], '2020-01-01T00:00:00.0000000Z') >= 1"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(12, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Month()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffMonth(r.StartTime, Instant.FromUtc(2020, 1, 1, 0, 0)) >= 1).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(MONTH, [r].[StartTime], '2020-01-01T00:00:00.0000000Z') >= 1"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(12, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Week()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffWeek(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 10).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(WEEK, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= 10"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(4, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Day()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffDay(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(DAY, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= 100"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(3, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Hour()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffHour(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 1000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(HOUR, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= 1000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Minute()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffMinute(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) <= 100000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(MINUTE, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') <= 100000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(8, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Second()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffSecond(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r] WHERE DATEDIFF(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= 100000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Millisecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffMillisecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[TimeStampInstant], [r].[TimeStampLocalDateTime], [r].[TimeStampLocalTime], [r].[TimeStampOffsetDateTime] FROM [RaceSplit] AS [r] WHERE DATEDIFF(MILLISECOND, '2020-01-01T00:00:00.0000000Z', [r].[TimeStampInstant]) <= 15000000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(4, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Big_Microsecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMicrosecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[TimeStampInstant], [r].[TimeStampLocalDateTime], [r].[TimeStampLocalTime], [r].[TimeStampOffsetDateTime] FROM [RaceSplit] AS [r] WHERE DATEDIFF_BIG(MICROSECOND, '2020-01-01T00:00:00.0000000Z', [r].[TimeStampInstant]) <= CAST(15000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(4, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_DateDiff_Big_Nanosecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigNanosecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000000000).ToListAsync();
+            Assert.Equal(
+                condense(@"SELECT [r].[Id], [r].[TimeStampInstant], [r].[TimeStampLocalDateTime], [r].[TimeStampLocalTime], [r].[TimeStampOffsetDateTime] FROM [RaceSplit] AS [r] WHERE DATEDIFF_BIG(NANOSECOND, '2020-01-01T00:00:00.0000000Z', [r].[TimeStampInstant]) <= CAST(15000000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(4, raceResults.Count);
+        }
     }
 }

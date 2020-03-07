@@ -17,6 +17,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 
         public DbSet<RaceResult> RaceResult { get; set; }
 
+        public DbSet<RaceSplit> RaceSplit { get; set; }
+
         public string Sql
             => _loggerFactory.Logger.Sql;
 
@@ -60,6 +62,19 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
                     new RaceResult { Id = 10, StartTime = Instant.FromUtc(2019, 10, 1, 17, 0), EndTime = Instant.FromUtc(2019, 10, 1, 18, 0), StartTimeOffset = OffsetDateTime.FromDateTimeOffset(new DateTimeOffset(new DateTime(2019, 10, 1, 17, 0, 0), TimeSpan.FromHours(5))) },
                     new RaceResult { Id = 11, StartTime = Instant.FromUtc(2019, 11, 1, 18, 0), EndTime = Instant.FromUtc(2019, 11, 1, 19, 0), StartTimeOffset = OffsetDateTime.FromDateTimeOffset(new DateTimeOffset(new DateTime(2019, 11, 1, 18, 0, 0), TimeSpan.FromHours(5))) },
                     new RaceResult { Id = 12, StartTime = Instant.FromUtc(2019, 12, 1, 19, 0), EndTime = Instant.FromUtc(2019, 12, 1, 20, 0), StartTimeOffset = OffsetDateTime.FromDateTimeOffset(new DateTimeOffset(new DateTime(2019, 12, 1, 19, 0, 0), TimeSpan.FromHours(5))) });
+
+            modelBuilder.Entity<RaceSplit>()
+                .HasData(
+                    new RaceSplit { Id = 1, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), TimeStampLocalTime = LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 100), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 100, 300) },
+                    new RaceSplit { Id = 2, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 2, 2, 2, 2, 2, 2), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 2, 2, 2, 2, 2, 2), TimeStampLocalTime = LocalTimeExtensions.FromParts(2, 2, 2, 2, 1, 100), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 2, 2, 2, 2, 2, 200, 300) },
+                    new RaceSplit { Id = 3, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 3, 3, 3, 3, 3, 3), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 3, 3, 3, 3, 3, 3), TimeStampLocalTime = LocalTimeExtensions.FromParts(3, 3, 3, 3, 3, 300), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 3, 3, 3, 3, 3, 300, 300) },
+                    new RaceSplit { Id = 4, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 4, 4, 4, 4, 4, 4), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 4, 4, 4, 4, 4, 4), TimeStampLocalTime = LocalTimeExtensions.FromParts(4, 4, 4, 4, 4, 400), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 4, 4, 4, 4, 4, 400, 300) },
+                    new RaceSplit { Id = 5, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 5, 5, 5, 5, 5, 5), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 5, 5, 5, 5, 5, 5), TimeStampLocalTime = LocalTimeExtensions.FromParts(5, 5, 5, 5, 5, 500), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 5, 5, 5, 5, 5, 500, 300) },
+                    new RaceSplit { Id = 6, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 6, 6, 6, 6, 6, 6), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 6, 6, 6, 6, 6, 6), TimeStampLocalTime = LocalTimeExtensions.FromParts(6, 6, 6, 6, 6, 600), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 6, 6, 6, 6, 6, 600, 300) },
+                    new RaceSplit { Id = 7, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 7, 7, 7, 7, 7, 7), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 7, 7, 7, 7, 7, 7), TimeStampLocalTime = LocalTimeExtensions.FromParts(7, 7, 7, 7, 7, 700), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 7, 7, 7, 7, 7, 700, 300) },
+                    new RaceSplit { Id = 8, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 8, 8, 8, 8, 8, 8), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 8, 8, 8, 8, 8, 8), TimeStampLocalTime = LocalTimeExtensions.FromParts(8, 8, 8, 8, 8, 800), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 8, 8, 8, 8, 8, 800, 300) },
+                    new RaceSplit { Id = 9, TimeStampInstant = InstantExtensions.FromParts(2020, 1, 1, 9, 9, 9, 9, 9, 9), TimeStampLocalDateTime = LocalDateTimeExtensions.FromParts(2020, 1, 1, 9, 9, 9, 9, 9, 9), TimeStampLocalTime = LocalTimeExtensions.FromParts(9, 9, 9, 9, 9, 900), TimeStampOffsetDateTime = OffsetDateTimeExtensions.FromParts(2020, 1, 1, 9, 9, 9, 9, 9, 900, 300) }
+                );
         }
     }
 }

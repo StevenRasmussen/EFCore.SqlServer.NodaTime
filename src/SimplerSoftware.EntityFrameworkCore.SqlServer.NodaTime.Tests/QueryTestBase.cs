@@ -1,4 +1,5 @@
-﻿using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         protected RacingContext Db { get; }
+
+        protected DbFunctions Functions { get; }
 
         protected static string condense(string str)
         {

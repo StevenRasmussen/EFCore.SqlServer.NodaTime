@@ -14,5 +14,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         public Instant EndTime { get; set; }
 
         public OffsetDateTime StartTimeOffset { get; set; }
+
+        public Duration OffsetFromWinner { get; set; }
     }
 }

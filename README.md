@@ -182,7 +182,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 DbFunctions dbFunctions = null;
 
 await this.Db.RaceResult
-    .Where(r => this.Functions.DateDiffBigSecond(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100000)
+    .Where(r => dbFunctions.DateDiffBigSecond(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100000)
     .ToListAsync();
 
 // Translates to: 

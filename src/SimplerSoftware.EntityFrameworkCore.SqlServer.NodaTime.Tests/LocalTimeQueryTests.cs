@@ -165,5 +165,93 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
             Assert.Single(raceResults);
         }
+
+        [Fact]
+        public async Task LocalTime_DateDiff_Hour()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffHour(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) >= 4).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(HOUR, '01:01:01.0010010', [r].[TimeStampLocalTime]) >= 4"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiff_Minute()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffMinute(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) >= 244).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(MINUTE, '01:01:01.0010010', [r].[TimeStampLocalTime]) >= 244"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiff_Second()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffSecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) >= 14500).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(SECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) >= 14500"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiff_Millisecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffMillisecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) <= 15000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(MILLISECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) <= 15000000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiffBig_Second()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigSecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) >= 10000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(SECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) >= CAST(10000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiffBig_Millisecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMillisecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) <= 15000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(MILLISECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) <= CAST(15000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiffBig_Microsecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMicrosecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) <= 15000000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(MICROSECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) <= CAST(15000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalTime_DateDiffBig_Nanosecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigNanosecond(LocalTimeExtensions.FromParts(1, 1, 1, 1, 1, 1), r.TimeStampLocalTime) <= 15000000000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(NANOSECOND, '01:01:01.0010010', [r].[TimeStampLocalTime]) <= CAST(15000000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
     }
 }

@@ -149,5 +149,49 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
             Assert.Single(raceResults);
         }
+
+        [Fact]
+        public async Task LocalDate_DateDiff_Year()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffYear(r.Date, new LocalDate(2020, 6, 1)) == 1).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(YEAR, [r].[Date], '2020-06-01') = 1"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(12, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDate_DateDiff_Month()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffMonth(r.Date, new LocalDate(2020, 1, 1)) >= 6).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(MONTH, [r].[Date], '2020-01-01') >= 6"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(7, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDate_DateDiff_Week()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffWeek(r.Date, new LocalDate(2020, 1, 1)) >= 30).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(WEEK, [r].[Date], '2020-01-01') >= 30"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDate_DateDiff_Day()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffDay(r.Date, new LocalDate(2020, 1, 1)) >= 200).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(DAY, [r].[Date], '2020-01-01') >= 200"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
     }
 }

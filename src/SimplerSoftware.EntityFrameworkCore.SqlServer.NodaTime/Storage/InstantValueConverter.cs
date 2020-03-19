@@ -21,7 +21,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 
         private static Instant fromProvider(DateTime dateTime)
         {
-            return Instant.FromDateTimeUtc(dateTime.ToUniversalTime());
+            return Instant.FromDateTimeUtc(DateTime.SpecifyKind(dateTime, DateTimeKind.Utc));
         }
     }
 }

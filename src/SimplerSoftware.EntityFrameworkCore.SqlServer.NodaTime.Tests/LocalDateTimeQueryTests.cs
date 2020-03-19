@@ -297,5 +297,137 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
             Assert.Single(raceResults);
         }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Year()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffYear(r.ScheduledStart, LocalDateTimeExtensions.FromParts(2020, 6, 1, 0, 0, 0, 0, 0, 0)) == 1).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(YEAR, [r].[ScheduledStart], '2020-06-01T00:00:00.0000000') = 1"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(12, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Month()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffMonth(r.ScheduledStart, LocalDateTimeExtensions.FromParts(2020, 1, 1, 0, 0, 0, 0, 0, 0)) >= 6).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(MONTH, [r].[ScheduledStart], '2020-01-01T00:00:00.0000000') >= 6"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(7, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Week()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffWeek(r.ScheduledStart, LocalDateTimeExtensions.FromParts(2020, 1, 1, 0, 0, 0, 0, 0, 0)) >= 30).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(WEEK, [r].[ScheduledStart], '2020-01-01T00:00:00.0000000') >= 30"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Day()
+        {
+            var raceResults = await this.Db.Race.Where(r => this.Functions.DateDiffDay(r.ScheduledStart, LocalDateTimeExtensions.FromParts(2020, 1, 1, 0, 0, 0, 0, 0, 0)) >= 200).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSelectStatement} WHERE DATEDIFF(DAY, [r].[ScheduledStart], '2020-01-01T00:00:00.0000000') >= 200"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Hour()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffHour(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) >= 4).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(HOUR, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) >= 4"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Minute()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffMinute(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) >= 244).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(MINUTE, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) >= 244"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Second()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffSecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) >= 14500).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(SECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) >= 14500"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiff_Millisecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffMillisecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) <= 15000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF(MILLISECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) <= 15000000"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiffBig_Second()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigSecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) >= 10000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(SECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) >= CAST(10000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiffBig_Millisecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMillisecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) <= 15000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(MILLISECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) <= CAST(15000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiffBig_Microsecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMicrosecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) <= 15000000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(MICROSECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) <= CAST(15000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDateTime_DateDiffBig_Nanosecond()
+        {
+            var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigNanosecond(LocalDateTimeExtensions.FromParts(2020, 1, 1, 1, 1, 1, 1, 1, 1), r.TimeStampLocalDateTime) <= 15000000000000).ToListAsync();
+            Assert.Equal(
+                condense(@$"{RaceSplitSelectStatement} WHERE DATEDIFF_BIG(NANOSECOND, '2020-01-01T01:01:00.0010010', [r].[TimeStampLocalDateTime]) <= CAST(15000000000000 AS bigint)"),
+                condense(this.Db.Sql));
+
+            Assert.Equal(5, raceResults.Count);
+        }
     }
 }

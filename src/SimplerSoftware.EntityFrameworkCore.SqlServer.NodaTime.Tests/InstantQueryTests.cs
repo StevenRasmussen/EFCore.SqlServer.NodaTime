@@ -362,7 +362,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_DateDiff_Big_Second()
+        public async Task Instant_DateDiffBig_Second()
         {
             var raceResults = await this.Db.RaceResult.Where(r => this.Functions.DateDiffBigSecond(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100000).ToListAsync();
             Assert.Equal(
@@ -373,7 +373,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_DateDiff_Big_Millisecond()
+        public async Task Instant_DateDiffBig_Millisecond()
         {
             var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMillisecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000).ToListAsync();
             Assert.Equal(
@@ -384,7 +384,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_DateDiff_Big_Microsecond()
+        public async Task Instant_DateDiffBig_Microsecond()
         {
             var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigMicrosecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000000).ToListAsync();
             Assert.Equal(
@@ -395,7 +395,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
-        public async Task Instant_DateDiff_Big_Nanosecond()
+        public async Task Instant_DateDiffBig_Nanosecond()
         {
             var raceResults = await this.Db.RaceSplit.Where(r => this.Functions.DateDiffBigNanosecond(Instant.FromUtc(2020, 1, 1, 0, 0), r.TimeStampInstant) <= 15000000000000).ToListAsync();
             Assert.Equal(

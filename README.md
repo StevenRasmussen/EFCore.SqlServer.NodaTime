@@ -79,7 +79,7 @@ The SQL `DATEPART` function is supported for the following types:
 Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
-### Supported Methods
+### Supported Parts
 * Year
 * Quarter
 * Month
@@ -107,4 +107,86 @@ await this.Db.RaceResult
 // Translates to: 
 // SELECT [r].[Id], [r].[EndTime], [r].[StartTime], [r].[StartTimeOffset] 
 // FROM [RaceResult] AS [r] WHERE DATEPART(year, [r].[StartTime]) = 2019
+```
+
+## DATEDIFF Support
+The SQL `DATEDIFF` function is supported for the following types:
+* Instant (extension methods)
+* OffsetDateTime (extension methods)
+* LocalDateTime (extension methods)
+* LocalDate (extension methods)
+* LocalTime (extension methods)
+* Duration (extension methods)
+
+**Note**: Please add a using statement in order to use the extension methods:
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+```
+
+### Supported Parts
+* Year
+* Quarter
+* Month
+* DayOfYear
+* Day
+* Week
+* WeekDay
+* Hour
+* Minute
+* Second
+* Millisecond
+* Microsecond
+* Nanosecond
+* TzOffset
+* IsoWeek
+
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+
+// DateDiff based on 'day'
+DbFunctions dbFunctions = null;
+
+await this.Db.Race
+    .Where(r => dbFunctions.DateDiffDay(r.Date, new LocalDate(2020, 1, 1)) >= 200)
+    .ToListAsync();
+
+// Translates to: 
+// SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime]
+// FROM [Race] AS [r]
+// WHERE DATEDIFF(DAY, [r].[Date], '2020-01-01') >= 200
+```
+
+## DATEDIFF_BIG Support
+The SQL `DATEDIFF_BIG` function is supported for the following types:
+* Instant (extension methods)
+* OffsetDateTime (extension methods)
+* LocalDateTime (extension methods)
+* LocalTime (extension methods)
+* Duration (extension methods)
+
+**Note**: Please add a using statement in order to use the extension methods:
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+```
+
+### Supported Parts
+* Second
+* Millisecond
+* Microsecond
+* Nanosecond
+
+```csharp
+Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+
+// DateDiffBig based on 'second'
+DbFunctions dbFunctions = null;
+
+await this.Db.RaceResult
+    .Where(r => this.Functions.DateDiffBigSecond(r.StartTime, Instant.FromUtc(2019, 7, 1, 0, 0)) >= 100000)
+    .ToListAsync();
+
+// Translates to: 
+// SELECT [r].[Id], [r].[EndTime], [r].[OffsetFromWinner], [r].[StartTime], [r].[StartTimeOffset]
+// FROM [RaceResult] AS [r]
+// WHERE DATEDIFF_BIG(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= CAST(100000 AS bigint)
 ```

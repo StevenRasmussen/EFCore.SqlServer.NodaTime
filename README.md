@@ -23,7 +23,7 @@ Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
 
 Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
 options.UseSqlServer("your DB Connection",
                     x => x.UseNodaTime());
@@ -40,7 +40,7 @@ The SQL `DATEADD` function is supported for the following types:
 
 **Note**: Please add a using statement in order to use the extension methods:
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
 ### Supported Methods
@@ -53,7 +53,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 * PlusMilliseconds
 
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
 // PlusYears
 await this.Db.RaceResult
@@ -76,7 +76,7 @@ The SQL `DATEPART` function is supported for the following types:
 
 **Note**: Please add a using statement in order to use the extension methods:
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
 ### Supported Parts
@@ -97,7 +97,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 * IsoWeek
 
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
 // Compare the 'Year' DatePart
 await this.Db.RaceResult
@@ -120,7 +120,7 @@ The SQL `DATEDIFF` function is supported for the following types:
 
 **Note**: Please add a using statement in order to use the extension methods:
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
 ### Supported Parts
@@ -141,7 +141,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 * IsoWeek
 
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
 // DateDiff based on 'day'
 DbFunctions dbFunctions = null;
@@ -166,7 +166,7 @@ The SQL `DATEDIFF_BIG` function is supported for the following types:
 
 **Note**: Please add a using statement in order to use the extension methods:
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
 ### Supported Parts
@@ -176,7 +176,7 @@ Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 * Nanosecond
 
 ```csharp
-Using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 
 // DateDiffBig based on 'second'
 DbFunctions dbFunctions = null;

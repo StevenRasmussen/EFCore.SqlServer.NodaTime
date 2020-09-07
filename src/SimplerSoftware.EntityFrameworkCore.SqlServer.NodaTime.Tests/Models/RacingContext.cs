@@ -8,8 +8,15 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 {
     public class RacingContext : DbContext
     {
+        public RacingContext(DbContextOptions options)
+            : base(options)
+        {
+        }
+
         readonly TestLoggerFactory _loggerFactory
             = new TestLoggerFactory();
+
+        public DbSet<LessPreciseRaceResult> LessPreciseRaceResults { get; set; }
 
         public DbSet<Race> Race { get; set; }
 
@@ -20,12 +27,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         public string Sql
             => _loggerFactory.Logger.Sql;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options
-                .UseSqlServer(
-                    @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NodaTimeTests",
-                    x => x.UseNodaTime())
-                .UseLoggerFactory(_loggerFactory);
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseLoggerFactory(_loggerFactory);
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

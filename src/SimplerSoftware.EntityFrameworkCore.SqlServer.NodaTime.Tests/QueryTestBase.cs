@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
 using System;
 using Xunit;
@@ -11,9 +12,13 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         public QueryTestBase(DatabaseTestFixture databaseTestFixture)
         {
             this.Db = databaseTestFixture.DbContext;
+            this.DbContextOptions = databaseTestFixture.DbContextOptions;
+            this.SqlConnection = databaseTestFixture.SqlConnection;
         }
 
         protected RacingContext Db { get; }
+
+        protected DbContextOptions<RacingContext> DbContextOptions { get; }
 
         protected DbFunctions Functions { get; }
 
@@ -22,6 +27,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         protected string RaceResultSelectStatement => "SELECT [r].[Id], [r].[EndTime], [r].[OffsetFromWinner], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r]";
 
         protected string RaceSplitSelectStatement => "SELECT [r].[Id], [r].[TimeStampInstant], [r].[TimeStampLocalDateTime], [r].[TimeStampLocalTime], [r].[TimeStampOffsetDateTime] FROM [RaceSplit] AS [r]";
+
+        protected SqlConnection SqlConnection { get; }
 
         protected static string condense(string str)
         {

@@ -1,11 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
@@ -47,9 +44,10 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
             return new RelationalTypeMappingParameters(
                 new CoreTypeMappingParameters(
                     clrType,
-                    new InstantValueConverter()
-                    ),
-                storeType);
+                    new InstantValueConverter()),
+                storeType,
+                StoreTypePostfix.Precision,
+                storeType == "datetime2" ? System.Data.DbType.DateTime2 : System.Data.DbType.DateTime);
         }
 
         /// <summary>

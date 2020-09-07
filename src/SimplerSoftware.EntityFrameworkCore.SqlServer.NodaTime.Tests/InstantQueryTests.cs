@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.Storage;
 using NodaTime;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -22,6 +25,28 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
                condense(this.Db.Sql));
 
             Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task Instant_EnsurePrecisionIsSavedCorrectly()
+        {
+            using var transaction = await this.Db.Database.BeginTransactionAsync();
+            var raceResult = new RaceResult
+            {
+                StartTime = SystemClock.Instance.GetCurrentInstant(),
+            };
+
+            this.Db.Add(raceResult);
+            await this.Db.SaveChangesAsync();
+
+            var newContext = new RacingContext(this.DbContextOptions);
+            newContext.Database.UseTransaction(transaction.GetDbTransaction());
+
+            var raceResultFromDb = await newContext.RaceResult.FirstOrDefaultAsync(x => x.Id == raceResult.Id);
+            var dateTimeString = raceResult.StartTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff", CultureInfo.InvariantCulture);
+            Assert.Equal(dateTimeString, raceResultFromDb.StartTime.ToString("yyyy-MM-ddTHH:mm:ss.fffffff", CultureInfo.InvariantCulture));
+
+            await transaction.RollbackAsync();
         }
 
         [Fact]

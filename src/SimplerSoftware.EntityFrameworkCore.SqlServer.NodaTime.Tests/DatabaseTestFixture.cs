@@ -1,7 +1,4 @@
 ﻿using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests

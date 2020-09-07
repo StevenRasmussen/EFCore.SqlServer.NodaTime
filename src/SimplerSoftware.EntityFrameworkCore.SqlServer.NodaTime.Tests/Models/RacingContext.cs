@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using NodaTime;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 {

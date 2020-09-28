@@ -1,4 +1,5 @@
 ![.NET Core](https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime/workflows/.NET%20Core/badge.svg?branch=master)
+[![NuGet version (EFCore.SqlServer.NodaTime)](https://img.shields.io/nuget/v/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.svg)](https://www.nuget.org/packages/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime/)
 
 # EFCore.SqlServer.NodaTime
 

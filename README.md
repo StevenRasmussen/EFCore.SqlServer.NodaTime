@@ -22,6 +22,8 @@ To use, simply install the NuGet package:
 Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
 ```
 
+**Note:** Versioning follows the [major.minor] of EF Core so that it is easy to know which version to install. Ie, if you are using EF Core v5.x then you would install v5.x of this package. Build and revision numbers are not guaranteed to follow the same numbers.
+
 Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:
 ```csharp
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;

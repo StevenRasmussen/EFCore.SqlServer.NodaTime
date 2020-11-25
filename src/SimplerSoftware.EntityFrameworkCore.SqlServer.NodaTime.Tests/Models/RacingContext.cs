@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+
 using NodaTime;
+
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Logging;
-using System;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 {
@@ -13,8 +16,10 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         {
         }
 
-        readonly TestLoggerFactory _loggerFactory
+        private readonly TestLoggerFactory _loggerFactory
             = new TestLoggerFactory();
+
+        public DbSet<SupportedNodaTypes> TypeResults { get; set; }
 
         public DbSet<LessPreciseRaceResult> LessPreciseRaceResults { get; set; }
 

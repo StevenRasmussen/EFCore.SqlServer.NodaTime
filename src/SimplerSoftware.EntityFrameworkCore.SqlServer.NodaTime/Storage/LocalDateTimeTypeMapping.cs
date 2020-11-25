@@ -1,10 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.Common;
-using System.Text;
+
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
@@ -47,7 +46,9 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
                     clrType,
                     new LocalDateTimeValueConverter()
                     ),
-                storeType);
+                storeType,
+                StoreTypePostfix.Precision,
+                storeType == "datetime2" ? System.Data.DbType.DateTime2 : System.Data.DbType.DateTime);
         }
 
         /// <summary>

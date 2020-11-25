@@ -35,7 +35,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
             Assert.NotNull(raceResultFromDb);
 
-            await transaction.CommitAsync();
+            await transaction.RollbackAsync();
         }
     }
 }

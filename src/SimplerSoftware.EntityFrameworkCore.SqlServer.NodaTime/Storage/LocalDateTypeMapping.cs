@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators;
+﻿using System;
+using System.Data;
+using System.Data.Common;
+
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
@@ -43,7 +44,31 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
                     clrType,
                     new LocalDateValueConverter()
                     ),
-                LocalDateTypeMappingSourcePlugin.SqlServerTypeName);
+                LocalDateTypeMappingSourcePlugin.SqlServerTypeName,
+                StoreTypePostfix.None,
+                System.Data.DbType.Date);
+        }
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override void ConfigureParameter(DbParameter parameter)
+        {
+            base.ConfigureParameter(parameter);
+
+            // Workaround for a SQLClient bug
+            if (DbType == System.Data.DbType.Date)
+            {
+                ((SqlParameter)parameter).SqlDbType = SqlDbType.Date;
+            }
+
+            if (Size.HasValue
+                && Size.Value != -1)
+            {
+                parameter.Size = Size.Value;
+            }
         }
     }
 }

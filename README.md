@@ -16,6 +16,8 @@ The following types are supported:
 ## Unit Tests
 All types and their methods have unit tests written to verify that the SQL is translated as expected. See individual tests for more information.
 
+**Note:** To run the unit tests for the first time, you will need to uncomment the lines [here](https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime/blob/017f19d68ac12e0ff2ce3ba34f60f1edd42badfe/src/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests/DatabaseTestFixture.cs#L20-L21). This ensures that the test DB is created locally.
+
 ## Usage
 To use, simply install the NuGet package:
 ```shell

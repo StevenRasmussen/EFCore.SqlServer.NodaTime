@@ -33,7 +33,7 @@
     <ItemGroup>
       <EFCoreSqlServerNodaTimeServices Include="Microsoft.EntityFrameworkCore.Design.DesignTimeServicesReferenceAttribute">
         <_Parameter1>SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Design.SqlServerNodaTimeDesignTimeServices, SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime</_Parameter1>
-        <_Parameter2>SimplerSoftware.EntityFrameworkCore.SqlServer</_Parameter2>
+        <_Parameter2>Microsoft.EntityFrameworkCore.SqlServer</_Parameter2>
       </EFCoreSqlServerNodaTimeServices>
     </ItemGroup>
     <WriteCodeFragment AssemblyAttributes="@(EFCoreSqlServerNodaTimeServices)"

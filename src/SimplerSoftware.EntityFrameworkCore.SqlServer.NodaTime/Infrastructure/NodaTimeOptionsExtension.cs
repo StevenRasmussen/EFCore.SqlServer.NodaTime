@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Properties;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Infrastructure
 {
@@ -35,7 +34,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Infrastructure
                     if (scope.ServiceProvider.GetService<IEnumerable<IMethodCallTranslatorPlugin>>()
                             ?.Any(s => s is InstantMethodCallTranslatorPlugin) != true ||
                         scope.ServiceProvider.GetService<IEnumerable<IRelationalTypeMappingSourcePlugin>>()
-                           ?.Any(s => s is InstantTypeMappingSourcePlugin) != true)
+                           ?.Any(s => s is SqlServerNodaTimeTypeMappingSourcePlugin) != true)
                     {
                         throw new InvalidOperationException(Resources.ServicesMissing);
                     }

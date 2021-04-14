@@ -28,11 +28,22 @@ Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
 
 Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:
 ```csharp
-using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 options.UseSqlServer("your DB Connection",
                     x => x.UseNodaTime());
 ```
+
+## Reverse Engineering (Scaffolding)
+Support for [reverse engineering](https://docs.microsoft.com/en-us/ef/core/managing-schemas/scaffolding?tabs=dotnet-core-cli) has been added starting in v5.0.2.
+
+The SQL Server types map as follows:
+* `smalldatetime` -> `Instant`
+* `datetime` -> `Instant`
+* `datetime2` -> `Instant`
+* `date` -> `LocalDate`
+* `time` -> `LocalTime`
+* `datetimeoffset` -> `OffsetDateTime`
 
 ## DATEADD Support
 The SQL `DATEADD` function is supported for the following types:

@@ -1,17 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
+using NodaTime;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
     internal class DurationTypeMapping : RelationalTypeMapping
     {
-        public DurationTypeMapping(Type clrType)
-            : base(CreateRelationalTypeMappingParameters(clrType))
+        public DurationTypeMapping()
+            : base(CreateRelationalTypeMappingParameters())
         {
         }
 
@@ -56,14 +55,13 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         /// </summary>
         protected override string SqlLiteralFormatString => "'{0}'";
 
-        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters(Type clrType)
+        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters()
         {
             return new RelationalTypeMappingParameters(
                 new CoreTypeMappingParameters(
-                    clrType,
-                    new DurationValueConverter()
-                    ),
-                DurationTypeMappingSourcePlugin.SqlServerTypeName);
+                    typeof(Duration),
+                    new DurationValueConverter()),
+                SqlServerDateTimeTypes.Time);
         }
     }
 }

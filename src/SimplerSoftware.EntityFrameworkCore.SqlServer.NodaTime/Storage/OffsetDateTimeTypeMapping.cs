@@ -1,10 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using NodaTime;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
@@ -12,8 +10,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
     {
         private const string DateTimeOffsetFormatConst = "{0:yyyy-MM-ddTHH:mm:ss.fffffffzzz}";
 
-        public OffsetDateTimeTypeMapping(string storeType, Type clrType)
-            : base(CreateRelationalTypeMappingParameters(storeType, clrType))
+        public OffsetDateTimeTypeMapping()
+            : base(CreateRelationalTypeMappingParameters())
         {
         }
 
@@ -27,14 +25,13 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
             return new OffsetDateTimeTypeMapping(parameters);
         }
 
-        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters(string storeType, Type clrType)
+        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters()
         {
             return new RelationalTypeMappingParameters(
                 new CoreTypeMappingParameters(
-                    clrType,
-                    new OffsetDateTimeValueConverter()
-                    ),
-                storeType);
+                    typeof(OffsetDateTime),
+                    new OffsetDateTimeValueConverter()),
+                SqlServerDateTimeTypes.DateTimeOffset);
         }
 
         /// <summary>
@@ -60,6 +57,6 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override string SqlLiteralFormatString => "'" + DateTimeOffsetFormatConst + "'";
+        protected override string SqlLiteralFormatString => $"'{DateTimeOffsetFormatConst}'";
     }
 }

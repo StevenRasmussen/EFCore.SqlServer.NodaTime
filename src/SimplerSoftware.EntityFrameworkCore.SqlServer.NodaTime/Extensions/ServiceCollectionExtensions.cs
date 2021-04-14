@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -17,30 +14,26 @@ namespace Microsoft.Extensions.DependencyInjection
                 .TryAddProviderSpecificServices(
                     x =>
                     {
+                        // All type mappings
+                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, SqlServerNodaTimeTypeMappingSourcePlugin>();
+
                         // Instant
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, InstantMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, InstantTypeMappingSourcePlugin>();
 
                         // LocalDate
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalDateTypeMappingSourcePlugin>();
 
                         // LocalTime
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalTimeMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalTimeTypeMappingSourcePlugin>();
-                       
                         
                         // Duration
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, DurationTypeMappingSourcePlugin>();
 
                         // LocalDateTime
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateTimeMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, LocalDateTimeTypeMappingSourcePlugin>();
 
                         // OffsetDateTime
                         x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>();
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, OffsetDateTimeTypeMappingSourcePlugin>();
 
                         // All MemberTranslators
                         x.TryAddSingletonEnumerable<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>();

@@ -1,18 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
+using NodaTime;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 using System.Data;
 using System.Data.Common;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
     internal class LocalTimeTypeMapping : RelationalTypeMapping
     {
-        public LocalTimeTypeMapping(Type clrType)
-            : base(CreateRelationalTypeMappingParameters(clrType))
+        public LocalTimeTypeMapping()
+            : base(CreateRelationalTypeMappingParameters())
         {
         }
 
@@ -57,14 +55,13 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         /// </summary>
         protected override string SqlLiteralFormatString => "'{0}'";
 
-        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters(Type clrType)
+        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters()
         {
             return new RelationalTypeMappingParameters(
                 new CoreTypeMappingParameters(
-                    clrType,
-                    new LocalTimeValueConverter()
-                    ),
-                LocalTimeTypeMappingSourcePlugin.SqlServerTypeName);
+                    typeof(LocalTime),
+                    new LocalTimeValueConverter()),
+                SqlServerDateTimeTypes.Time);
         }
     }
 }

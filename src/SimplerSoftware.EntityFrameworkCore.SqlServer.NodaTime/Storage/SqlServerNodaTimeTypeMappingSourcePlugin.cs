@@ -51,9 +51,6 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage
         }
 
         public virtual RelationalTypeMapping FindMapping(in RelationalTypeMappingInfo mappingInfo)
-            => FindExistingMapping(mappingInfo);
-
-        protected virtual RelationalTypeMapping FindExistingMapping(in RelationalTypeMappingInfo mappingInfo)
         {
             var clrType = mappingInfo.ClrType;
             var storeTypeName = mappingInfo.StoreTypeName;

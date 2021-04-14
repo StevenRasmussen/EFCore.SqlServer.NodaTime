@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
+namespace Microsoft.EntityFrameworkCore
 {
     public static class SqlServerDbContextOptionsBuilderExtensions
     {
@@ -24,6 +22,19 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
             ((IDbContextOptionsBuilderInfrastructure)coreOptionsBuilder).AddOrUpdateExtension(extension);
 
             return optionsBuilder;
+        }
+    }
+}
+
+namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
+{
+    public static class SqlServerDbContextOptionsBuilderExtensions
+    {
+        [Obsolete("Please use the 'UseNodaTime' extension method found in the 'Microsoft.EntityFrameworkCore.SqlServer' namespace.")]
+        public static SqlServerDbContextOptionsBuilder UseNodaTime(
+            this SqlServerDbContextOptionsBuilder optionsBuilder)
+        {
+            return EntityFrameworkCore.SqlServerDbContextOptionsBuilderExtensions.UseNodaTime(optionsBuilder);
         }
     }
 }

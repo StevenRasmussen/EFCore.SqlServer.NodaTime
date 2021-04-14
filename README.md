@@ -26,7 +26,7 @@ Install-Package SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime
 
 Then call the `UseNodaTime()` method as part of your SqlServer configuration during the `UseSqlServer` method call:
 ```csharp
-using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 options.UseSqlServer("your DB Connection",
                     x => x.UseNodaTime());

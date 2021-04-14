@@ -1,9 +1,9 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Scaffolding;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Design
 {
@@ -12,12 +12,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Design
     {
         public void ConfigureDesignTimeServices(IServiceCollection serviceCollection)
             => serviceCollection
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, InstantTypeMappingSourcePlugin>()
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, LocalDateTypeMappingSourcePlugin>()
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, LocalTimeTypeMappingSourcePlugin>()
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, DurationTypeMappingSourcePlugin>()
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, LocalDateTimeTypeMappingSourcePlugin>()
-                .AddSingleton<IRelationalTypeMappingSourcePlugin, OffsetDateTimeTypeMappingSourcePlugin>()
+                .AddSingleton<IRelationalTypeMappingSourcePlugin, SqlServerNodaTimeTypeMappingSourcePlugin>()
                 .AddSingleton<IProviderCodeGeneratorPlugin, SqlServerNodaTimeCodeGeneratorPlugin>();
     }
 }

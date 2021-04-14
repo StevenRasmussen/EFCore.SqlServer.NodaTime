@@ -1,9 +1,10 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore.Storage;
+using NodaTime;
+using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {
@@ -11,8 +12,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
     {
         private const string DateFormatConst = "'{0:yyyy-MM-dd}'";
 
-        public LocalDateTypeMapping(Type clrType)
-            : base(CreateRelationalTypeMappingParameters(clrType))
+        public LocalDateTypeMapping()
+            : base(CreateRelationalTypeMappingParameters())
         {
         }
 
@@ -32,19 +33,15 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override string SqlLiteralFormatString
-        {
-            get { return DateFormatConst; }
-        }
+        protected override string SqlLiteralFormatString => DateFormatConst;
 
-        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters(Type clrType)
+        private static RelationalTypeMappingParameters CreateRelationalTypeMappingParameters()
         {
             return new RelationalTypeMappingParameters(
                 new CoreTypeMappingParameters(
-                    clrType,
-                    new LocalDateValueConverter()
-                    ),
-                LocalDateTypeMappingSourcePlugin.SqlServerTypeName,
+                    typeof(LocalDate),
+                    new LocalDateValueConverter()),
+                SqlServerDateTimeTypes.Date,
                 StoreTypePostfix.None,
                 System.Data.DbType.Date);
         }

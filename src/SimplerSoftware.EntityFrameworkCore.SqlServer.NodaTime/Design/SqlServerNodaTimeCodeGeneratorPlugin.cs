@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Scaffolding;
-using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
+
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Design
 {
     public class SqlServerNodaTimeCodeGeneratorPlugin : ProviderCodeGeneratorPlugin

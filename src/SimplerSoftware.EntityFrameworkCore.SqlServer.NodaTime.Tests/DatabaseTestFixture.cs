@@ -1,6 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models;
 using Xunit;
 

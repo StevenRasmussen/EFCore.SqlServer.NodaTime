@@ -5,13 +5,15 @@
 
 Adds native support to EntityFrameworkCore for SQL Server for the [NodaTime](https://nodatime.org/) types.
 
-The following types are supported:
+When modelling, usage of the following NodaTime types are supported:
 * Instant
 * OffsetDateTime
 * LocalDateTime
 * LocalDate
 * LocalTime
 * Duration
+
+When querying, standard operators are supported as well as a range of additional mappings from NodaTime properties/function to their SQL Server equivalents.
 
 ## Unit Tests
 All types and their methods have unit tests written to verify that the SQL is translated as expected. See individual tests for more information.
@@ -45,7 +47,9 @@ The SQL Server types map as follows:
 * `time` -> `LocalTime`
 * `datetimeoffset` -> `OffsetDateTime`
 
-## DATEADD Support
+## Additional property / function mappings
+
+### DATEADD Support
 The SQL `DATEADD` function is supported for the following types:
 * Instant (extension methods)
 * OffsetDateTime (native and some extension methods)
@@ -59,7 +63,7 @@ The SQL `DATEADD` function is supported for the following types:
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
-### Supported Methods
+#### Supported Methods
 * PlusYears
 * PlusMonths
 * PlusDays
@@ -81,7 +85,7 @@ await this.Db.RaceResult
 // FROM [RaceResult] AS [r] WHERE DATEADD(year, CAST(1 AS int), [r].[StartTime]) >= '2019-07-01T01:00:00.0000000Z'
 ```
 
-## DATEPART Support
+### DATEPART Support
 The SQL `DATEPART` function is supported for the following types:
 * Instant (extension methods)
 * OffsetDateTime (native and some extension methods)
@@ -95,7 +99,7 @@ The SQL `DATEPART` function is supported for the following types:
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
-### Supported Parts
+#### Supported Parts
 * Year
 * Quarter
 * Month
@@ -125,7 +129,7 @@ await this.Db.RaceResult
 // FROM [RaceResult] AS [r] WHERE DATEPART(year, [r].[StartTime]) = 2019
 ```
 
-## DATEDIFF Support
+### DATEDIFF Support
 The SQL `DATEDIFF` function is supported for the following types:
 * Instant (extension methods)
 * OffsetDateTime (extension methods)
@@ -139,7 +143,7 @@ The SQL `DATEDIFF` function is supported for the following types:
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
-### Supported Parts
+#### Supported Parts
 * Year
 * Quarter
 * Month
@@ -172,7 +176,7 @@ await this.Db.Race
 // WHERE DATEDIFF(DAY, [r].[Date], '2020-01-01') >= 200
 ```
 
-## DATEDIFF_BIG Support
+### DATEDIFF_BIG Support
 The SQL `DATEDIFF_BIG` function is supported for the following types:
 * Instant (extension methods)
 * OffsetDateTime (extension methods)
@@ -185,7 +189,7 @@ The SQL `DATEDIFF_BIG` function is supported for the following types:
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 ```
 
-### Supported Parts
+#### Supported Parts
 * Second
 * Millisecond
 * Microsecond

@@ -30,7 +30,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions
 {
     public static class SqlServerDbContextOptionsBuilderExtensions
     {
-        [Obsolete("Please use the 'UseNodaTime' extension method found in the 'Microsoft.EntityFrameworkCore.SqlServer' namespace.")]
+        [Obsolete("Please use the 'UseNodaTime' extension method found in the 'Microsoft.EntityFrameworkCore' namespace.")]
         public static SqlServerDbContextOptionsBuilder UseNodaTime(
             this SqlServerDbContextOptionsBuilder optionsBuilder)
         {

@@ -49,15 +49,15 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Infrastructure
             {
             }
 
-            private new NodaTimeOptionsExtension Extension
-                => (NodaTimeOptionsExtension)base.Extension;
+            private new NodaTimeOptionsExtension Extension => (NodaTimeOptionsExtension)base.Extension;
 
             public override bool IsDatabaseProvider => false;
 
-            public override long GetServiceProviderHashCode() => 0;
+            public override int GetServiceProviderHashCode() => 0;
 
-            public override void PopulateDebugInfo(IDictionary<string, string> debugInfo)
-            => debugInfo["SqlServer:" + nameof(SqlServerDbContextOptionsBuilderExtensions.UseNodaTime)] = "1";
+            public override void PopulateDebugInfo(IDictionary<string, string> debugInfo) => debugInfo["SqlServer:" + nameof(SqlServerDbContextOptionsBuilderExtensions.UseNodaTime)] = "1";
+
+            public override bool ShouldUseSameServiceProvider(DbContextOptionsExtensionInfo other) => true;
 
             public override string LogFragment => "using NodaTime ";
         }

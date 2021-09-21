@@ -11,33 +11,14 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddNodaTime(this IServiceCollection serviceCollection)
         {
             new EntityFrameworkRelationalServicesBuilder(serviceCollection)
-                .TryAddProviderSpecificServices(
-                    x =>
-                    {
-                        // All type mappings
-                        x.TryAddSingletonEnumerable<IRelationalTypeMappingSourcePlugin, SqlServerNodaTimeTypeMappingSourcePlugin>();
-
-                        // Instant
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, InstantMethodCallTranslatorPlugin>();
-
-                        // LocalDate
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateMethodCallTranslatorPlugin>();
-
-                        // LocalTime
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalTimeMethodCallTranslatorPlugin>();
-                        
-                        // Duration
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>();
-
-                        // LocalDateTime
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, LocalDateTimeMethodCallTranslatorPlugin>();
-
-                        // OffsetDateTime
-                        x.TryAddSingletonEnumerable<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>();
-
-                        // All MemberTranslators
-                        x.TryAddSingletonEnumerable<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>();
-                    });
+                .TryAdd<IRelationalTypeMappingSourcePlugin, SqlServerNodaTimeTypeMappingSourcePlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, InstantMethodCallTranslatorPlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, LocalDateMethodCallTranslatorPlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, LocalTimeMethodCallTranslatorPlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, LocalDateTimeMethodCallTranslatorPlugin>()
+                .TryAdd<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>()
+                .TryAddProviderSpecificServices(x => x.TryAddScopedEnumerable<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>());
 
             return serviceCollection;
         }

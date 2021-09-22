@@ -16,8 +16,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         {
         }
 
-        private readonly TestLoggerFactory _loggerFactory
-            = new TestLoggerFactory();
+        private readonly TestLoggerFactory _loggerFactory = new TestLoggerFactory();
 
         public DbSet<SupportedNodaTypes> TypeResults { get; set; }
 
@@ -29,8 +28,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 
         public DbSet<RaceSplit> RaceSplit { get; set; }
 
-        public string Sql
-            => _loggerFactory.Logger.Sql;
+        public string Sql => _loggerFactory.Logger.Sql;
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseLoggerFactory(_loggerFactory);
 

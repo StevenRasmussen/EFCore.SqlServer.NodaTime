@@ -9,7 +9,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
     {
         public DatabaseTestFixture()
         {
-            this.SqlConnection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NodaTimeTests");
+            this.SqlConnection = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;Database=NodaTimeTests;Trusted_Connection=True");
 
             this.DbContextOptions = new DbContextOptionsBuilder<RacingContext>()
                 .UseSqlServer(this.SqlConnection, x => x.UseNodaTime())

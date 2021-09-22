@@ -17,8 +17,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 .TryAdd<IMethodCallTranslatorPlugin, LocalTimeMethodCallTranslatorPlugin>()
                 .TryAdd<IMethodCallTranslatorPlugin, DurationMethodCallTranslatorPlugin>()
                 .TryAdd<IMethodCallTranslatorPlugin, LocalDateTimeMethodCallTranslatorPlugin>()
-                .TryAdd<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>()
-                .TryAddProviderSpecificServices(x => x.TryAddScopedEnumerable<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>());
+                .TryAdd<IMethodCallTranslatorPlugin, OffsetDateTimeMethodCallTranslatorPlugin>();
+
+            // Track the following to see if we can use the 'TryAdd' method above for this at some point: https://github.com/dotnet/efcore/issues/26071
+            serviceCollection.AddScoped<IMemberTranslatorProvider, NodaTimeTypesMemberTranslatorPlugin>();
 
             return serviceCollection;
         }

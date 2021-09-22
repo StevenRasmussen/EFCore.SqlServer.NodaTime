@@ -12,7 +12,8 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.0-rc.1.21452.10
+        dotnet-version: 6.0.x
+        include-prerelease: true
     - name: Build with dotnet
       run: dotnet build "./src/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.sln" --configuration Release
     # name: Execute Tests

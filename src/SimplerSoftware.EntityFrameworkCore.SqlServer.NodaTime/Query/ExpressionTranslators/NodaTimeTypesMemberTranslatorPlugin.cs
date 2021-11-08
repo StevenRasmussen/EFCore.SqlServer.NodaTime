@@ -1,15 +1,16 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {
-    public class NodaTimeTypesMemberTranslatorPlugin : RelationalMemberTranslatorProvider
+    public class NodaTimeTypesMemberTranslatorPlugin : SqlServerMemberTranslatorProvider
     {
-        public NodaTimeTypesMemberTranslatorPlugin([NotNull] RelationalMemberTranslatorProviderDependencies dependencies) 
-            : base(dependencies)
+        public NodaTimeTypesMemberTranslatorPlugin(
+            [NotNull] RelationalMemberTranslatorProviderDependencies dependencies,
+            IRelationalTypeMappingSource typeMappingSource)
+            : base(dependencies, typeMappingSource)
         {
             var sqlExpressionFactory = dependencies.SqlExpressionFactory;
 

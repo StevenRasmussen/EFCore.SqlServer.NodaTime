@@ -22,7 +22,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
 
         protected DbFunctions Functions { get; }
 
-        protected string RaceSelectStatement => "SELECT [r].[Id], [r].[Date], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r]";
+        protected string RaceSelectStatement => "SELECT [r].[Id], [r].[Date], [r].[DateTimeDate], [r].[ScheduledDuration], [r].[ScheduledStart], [r].[ScheduledStartTime] FROM [Race] AS [r]";
 
         protected string RaceResultSelectStatement => "SELECT [r].[Id], [r].[EndTime], [r].[OffsetFromWinner], [r].[StartTime], [r].[StartTimeOffset] FROM [RaceResult] AS [r]";
 

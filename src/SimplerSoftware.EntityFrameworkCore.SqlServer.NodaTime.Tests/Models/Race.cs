@@ -1,7 +1,5 @@
 ﻿using NodaTime;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
 {
@@ -10,6 +8,8 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests.Models
         public int Id { get; set; }
 
         public LocalDate Date { get; set; }
+
+        public DateTime DateTimeDate { get; set; }
 
         public LocalDateTime ScheduledStart { get; set; }
 

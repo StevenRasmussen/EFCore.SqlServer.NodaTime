@@ -1,5 +1,6 @@
 ![.NET Core](https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime/workflows/.NET%20Core/badge.svg?branch=master)
 [![NuGet version (EFCore.SqlServer.NodaTime)](https://img.shields.io/nuget/v/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.svg)](https://www.nuget.org/packages/SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime/)
+[Version History](#version-history)
 
 # EFCore.SqlServer.NodaTime
 
@@ -210,3 +211,22 @@ await this.Db.RaceResult
 // FROM [RaceResult] AS [r]
 // WHERE DATEDIFF_BIG(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= CAST(100000 AS bigint)
 ```
+
+## Version History
+
+* 6.0.0
+  * Support for .Net 6 - [#23](/issues/23)
+* 5.0.3
+  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/issues/25)
+* 5.0.2
+  * Added design time support - [#16](/issues/16)
+* 5.0.1
+  * Fix SqlDateTime overflow - [#13](/issues/13) 
+* 5.0.0
+  * Support for .Net 5
+* 3.1.2
+  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/issues/25)
+* 3.1.1
+  * Fix SqlDateTime overflow - [#13](/issues/13)
+* 3.1.0
+  * Sync version number with .Net Core 3.1.0

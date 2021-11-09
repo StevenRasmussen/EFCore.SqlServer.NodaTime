@@ -215,18 +215,18 @@ await this.Db.RaceResult
 ## Version History
 
 * 6.0.0
-  * Support for .Net 6 - [#23](/issues/23)
+  * Support for .Net 6 - [#23](/../../issues/23)
 * 5.0.3
-  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/issues/25)
+  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/../../issues/25)
 * 5.0.2
-  * Added design time support - [#16](/issues/16)
+  * Added design time support - [#16](/../../issues/16)
 * 5.0.1
-  * Fix SqlDateTime overflow - [#13](/issues/13) 
+  * Fix SqlDateTime overflow - [#13](/../../issues/13) 
 * 5.0.0
   * Support for .Net 5
 * 3.1.2
-  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/issues/25)
+  * Fixed an issue where `DateTime` queries failed in some instances - [#25](/../../issues/25)
 * 3.1.1
-  * Fix SqlDateTime overflow - [#13](/issues/13)
+  * Fix SqlDateTime overflow - [#13](/../../issues/13)
 * 3.1.0
   * Sync version number with .Net Core 3.1.0

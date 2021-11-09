@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;EntityFrameworkCore;EFCore;Noda;NodaTime;Noda Time</PackageTags>
-    <Version>5.0.2</Version>
+    <Version>5.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>

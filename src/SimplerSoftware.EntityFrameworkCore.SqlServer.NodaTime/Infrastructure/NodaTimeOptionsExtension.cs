@@ -31,9 +31,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Infrastructure
                 using (var scope = internalServiceProvider.CreateScope())
                 {
                     // Instant
-                    if (scope.ServiceProvider.GetService<IEnumerable<IMethodCallTranslatorPlugin>>()
-                            ?.Any(s => s is InstantMethodCallTranslatorPlugin) != true ||
-                        scope.ServiceProvider.GetService<IEnumerable<IRelationalTypeMappingSourcePlugin>>()
+                    if (scope.ServiceProvider.GetService<IEnumerable<IRelationalTypeMappingSourcePlugin>>()
                            ?.Any(s => s is SqlServerNodaTimeTypeMappingSourcePlugin) != true)
                     {
                         throw new InvalidOperationException(Resources.ServicesMissing);

@@ -214,6 +214,8 @@ await this.Db.RaceResult
 
 ## Version History
 
+* 6.0.1
+  * Fixed an issue where an `ArgumentNullException` would throw if you called `UseInternalServiceProvider` - [#27](/../../issues/27)
 * 6.0.0
   * Support for .Net 6 - [#23](/../../issues/23)
 * 5.0.3

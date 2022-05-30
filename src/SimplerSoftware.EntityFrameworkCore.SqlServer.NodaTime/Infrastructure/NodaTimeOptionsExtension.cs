@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Properties;

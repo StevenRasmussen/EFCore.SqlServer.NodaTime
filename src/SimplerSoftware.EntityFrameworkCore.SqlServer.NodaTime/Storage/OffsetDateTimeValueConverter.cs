@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
 {

@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {

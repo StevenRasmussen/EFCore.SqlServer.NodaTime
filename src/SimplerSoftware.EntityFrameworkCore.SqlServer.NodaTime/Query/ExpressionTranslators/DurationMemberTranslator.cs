@@ -1,9 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Query;
 using NodaTime;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
 {

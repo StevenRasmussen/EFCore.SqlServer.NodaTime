@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using NodaTime;
 using SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage;
-using System;
 using System.Data.Common;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Storage

@@ -48,6 +48,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                                 _sqlExpressionFactory.Convert(arguments[0], typeof(int)),
                                 instance
                             },
+                            false,
+                            null,
                             instance.Type,
                             instance.TypeMapping);
             }
@@ -65,6 +67,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                                 _sqlExpressionFactory.Convert(arguments[1], typeof(int)),
                                 arguments[0]
                             },
+                            false,
+                            null,
                             arguments[0].Type,
                             arguments[0].TypeMapping);
             }
@@ -77,6 +81,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                                 _sqlExpressionFactory.Fragment(datePart),
                                 arguments[0]
                             },
+                            false,
+                            null,
                             method.ReturnType,
                             null);
             }
@@ -92,6 +98,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                 return _sqlExpressionFactory.Function(
                     "DATEDIFF",
                     new[] { _sqlExpressionFactory.Fragment(dateDiffDatePart), startDate, endDate },
+                    false,
+                    null,
                     method.ReturnType,
                     null);
             }
@@ -107,6 +115,8 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                 return _sqlExpressionFactory.Function(
                     "DATEDIFF_BIG",
                     new[] { _sqlExpressionFactory.Fragment(dateDiffBigDatePart), startDate, endDate },
+                    false,
+                    null,
                     method.ReturnType,
                     null);
             }

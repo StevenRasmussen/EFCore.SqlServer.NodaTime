@@ -214,6 +214,8 @@ await this.Db.RaceResult
 
 ## Version History
 
+* 7.0.0-rc.1.22426.7 (September 25, 2022)
+  * Release candidate for EF Core 7
 * 6.0.1
   * Fixed an issue where an `ArgumentNullException` would throw if you called `UseInternalServiceProvider` - [#27](/../../issues/27)
 * 6.0.0

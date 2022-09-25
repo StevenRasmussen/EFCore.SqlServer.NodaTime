@@ -13,12 +13,12 @@
     <PackageProjectUrl>https://github.com/StevenRasmussen/EFCore.SqlServer.NodaTime</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;EntityFrameworkCore;EFCore;Noda;NodaTime;Noda Time</PackageTags>
-    <Version>6.0.1.0</Version>
+    <Version>7.0.0.0-rc.1.22426.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-rc.1.22426.7" />
     <PackageReference Include="NodaTime" Version="3.0.0" />
   </ItemGroup>
 

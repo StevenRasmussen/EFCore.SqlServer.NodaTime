@@ -213,7 +213,8 @@ await this.Db.RaceResult
 ```
 
 ## Version History
-
+* 7.0.0 (November 9, 2022)
+  * Initial release supporting EF Core 7.0.0
 * 7.0.0-rc.1.22426.7 (September 25, 2022)
   * Release candidate for EF Core 7
 * 6.0.1

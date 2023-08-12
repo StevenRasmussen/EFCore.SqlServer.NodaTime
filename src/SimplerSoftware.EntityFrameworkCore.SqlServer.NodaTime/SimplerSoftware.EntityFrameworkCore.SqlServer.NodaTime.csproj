@@ -14,6 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;EntityFrameworkCore;EFCore;Noda;NodaTime;Noda Time</PackageTags>
     <Version>7.1.0.0</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,6 +43,7 @@
       <Pack>True</Pack>
       <PackagePath>build</PackagePath>
     </None>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>

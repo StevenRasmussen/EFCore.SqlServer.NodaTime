@@ -110,6 +110,18 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
+        public async Task OffsetDateTime_Date()
+        {
+            var raceResults = await this.Db.RaceResult.Where(r => r.StartTimeOffset.Date >= new LocalDate(2019, 7, 1)).ToListAsync();
+
+            Assert.Equal(
+               condense(@$"{RaceResultSelectStatement} WHERE CAST([r].[StartTimeOffset] AS date) >= '2019-07-01'"),
+               condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
         public async Task OffsetDateTime_DatePart_Year()
         {
             var raceResults = await this.Db.RaceResult.Where(r => r.StartTimeOffset.Year == 2019).ToListAsync();

@@ -213,6 +213,9 @@ await this.Db.RaceResult
 ```
 
 ## Version History
+* 7.1.0 (August 12, 2023)
+  * Added support for `LocalDateTime.Date` property - [#35](/../../issues/35)
+  * Added support for `OffsetDateTime.Date` property
 * 7.0.0 (November 9, 2022)
   * Initial release supporting EF Core 7.0.0
 * 7.0.0-rc.1.22426.7 (September 25, 2022)

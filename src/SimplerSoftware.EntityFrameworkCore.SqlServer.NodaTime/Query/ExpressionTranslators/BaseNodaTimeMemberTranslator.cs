@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using NodaTime;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -36,6 +37,10 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                         false,
                         null,
                         returnType);
+                }
+                else if (member.Name == nameof(LocalDateTime.Date) && returnType == typeof(LocalDate))
+                {
+                    return _sqlExpressionFactory.Convert(instance, typeof(LocalDate));
                 }
             }
 

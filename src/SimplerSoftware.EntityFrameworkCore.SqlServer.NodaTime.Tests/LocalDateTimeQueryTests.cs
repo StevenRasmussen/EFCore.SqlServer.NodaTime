@@ -157,6 +157,18 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
         }
 
         [Fact]
+        public async Task LocalDateTime_Date()
+        {
+            var raceResults = await this.Db.Race.Where(r => r.ScheduledStart.Date >= new LocalDate(2019, 7, 1)).ToListAsync();
+
+            Assert.Equal(
+               condense(@$"{RaceSelectStatement} WHERE CAST([r].[ScheduledStart] AS date) >= '2019-07-01'"),
+               condense(this.Db.Sql));
+
+            Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
         public async Task LocalDateTime_DatePart_Year()
         {
             var raceResults = await this.Db.Race.Where(r => r.ScheduledStart.Year == 2019).ToListAsync();

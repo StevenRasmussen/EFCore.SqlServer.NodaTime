@@ -212,7 +212,8 @@ await this.Db.RaceResult
 // WHERE DATEDIFF_BIG(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= CAST(100000 AS bigint)
 ```
 
-## Version History
+* 8.0.0-rc.1.23419.6 (September 15, 2023)
+  * Release candidate 1 for EF Core 8
 * 7.1.0 (August 12, 2023)
   * Added support for `LocalDateTime.Date` property - [#35](/../../issues/35)
   * Added support for `OffsetDateTime.Date` property

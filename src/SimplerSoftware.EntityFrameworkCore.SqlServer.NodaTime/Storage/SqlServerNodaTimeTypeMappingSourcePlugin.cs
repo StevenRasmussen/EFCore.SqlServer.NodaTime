@@ -73,11 +73,11 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage
                 if (StoreTypeMappings.TryGetValue(storeTypeNameBase!, out mappings))
                 {
                     if (clrType == null)
-                        return mappings[0].Clone(in mappingInfo);
+                        return mappings[0].Clone(mappingInfo);
 
                     foreach (var m in mappings)
                         if (m.ClrType == clrType)
-                            return m.Clone(in mappingInfo);
+                            return m.Clone(mappingInfo);
 
                     return null;
                 }
@@ -88,7 +88,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage
 
             // TODO: Cache size/precision/scale mappings?
             return mappingInfo.Precision.HasValue && _hasPrecisionTypes.Contains(mapping.ClrType)
-                ? mapping.Clone($"{mapping.StoreType}({mappingInfo.Precision.Value})", null)
+                ? mapping.Clone(mappingInfo, null)
                 : mapping;
         }
 

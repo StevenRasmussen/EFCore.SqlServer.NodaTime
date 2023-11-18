@@ -50,7 +50,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage
             this.AddTypeMappingToDictionaries(this._durationTypeMapping);
         }
 
-        public virtual RelationalTypeMapping FindMapping(in RelationalTypeMappingInfo mappingInfo)
+        public RelationalTypeMapping FindMapping(in RelationalTypeMappingInfo mappingInfo)
         {
             var clrType = mappingInfo.ClrType;
             var storeTypeName = mappingInfo.StoreTypeName;
@@ -88,7 +88,7 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Storage
 
             // TODO: Cache size/precision/scale mappings?
             return mappingInfo.Precision.HasValue && _hasPrecisionTypes.Contains(mapping.ClrType)
-                ? mapping.Clone(mappingInfo, null)
+                ? mapping.Clone(mappingInfo)
                 : mapping;
         }
 

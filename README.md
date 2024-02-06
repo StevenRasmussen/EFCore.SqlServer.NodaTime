@@ -12,7 +12,7 @@ When modelling, usage of the following NodaTime types are supported:
 * LocalDateTime
 * LocalDate
 * LocalTime
-* Duration
+* Duration (stored as `time` in SQL Server which limits this type to < 24 hours)
 
 When querying, standard operators are supported as well as a range of additional mappings from NodaTime properties/function to their SQL Server equivalents.
 

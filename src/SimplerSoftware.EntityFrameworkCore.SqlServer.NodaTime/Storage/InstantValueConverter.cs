@@ -11,12 +11,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         {
         }
 
-        private static DateTime toProvider(Instant instant)
+        public static DateTime toProvider(Instant instant)
         {
             return instant.ToDateTimeUtc();
         }
 
-        private static Instant fromProvider(DateTime dateTime)
+        public static Instant fromProvider(DateTime dateTime)
         {
             return Instant.FromDateTimeUtc(DateTime.SpecifyKind(dateTime, DateTimeKind.Utc));
         }

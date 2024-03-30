@@ -11,12 +11,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         {
         }
 
-        private static TimeSpan toProvider(Duration duration)
+        public static TimeSpan toProvider(Duration duration)
         {
             return duration.ToTimeSpan();
         }
 
-        private static Duration fromProvider(TimeSpan timeSpan)
+        public static Duration fromProvider(TimeSpan timeSpan)
         {
             return Duration.FromTimeSpan(timeSpan);
         }

@@ -11,12 +11,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         {
         }
 
-        private static TimeSpan toProvider(LocalTime localTime)
+        public static TimeSpan toProvider(LocalTime localTime)
         {
             return new TimeSpan(localTime.TickOfDay);
         }
 
-        private static LocalTime fromProvider(TimeSpan dateTime)
+        public static LocalTime fromProvider(TimeSpan dateTime)
         {
             return LocalTime.FromTicksSinceMidnight(dateTime.Ticks);
         }

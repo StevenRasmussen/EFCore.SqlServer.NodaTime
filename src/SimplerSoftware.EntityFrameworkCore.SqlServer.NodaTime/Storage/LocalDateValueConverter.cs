@@ -11,12 +11,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         {
         }
 
-        private static DateTime toProvider(LocalDate localDate)
+        public static DateTime toProvider(LocalDate localDate)
         {
             return localDate.ToDateTimeUnspecified();
         }
 
-        private static LocalDate fromProvider(DateTime dateTime)
+        public static LocalDate fromProvider(DateTime dateTime)
         {
             return LocalDate.FromDateTime(dateTime);
         }

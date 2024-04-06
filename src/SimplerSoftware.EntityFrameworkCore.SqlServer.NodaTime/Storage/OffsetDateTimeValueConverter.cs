@@ -11,12 +11,12 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Storage
         {
         }
 
-        private static DateTimeOffset toProvider(OffsetDateTime offsetDateTime)
+        public static DateTimeOffset toProvider(OffsetDateTime offsetDateTime)
         {
             return offsetDateTime.ToDateTimeOffset();
         }
 
-        private static OffsetDateTime fromProvider(DateTimeOffset dateTimeOffset)
+        public static OffsetDateTime fromProvider(DateTimeOffset dateTimeOffset)
         {
             return OffsetDateTime.FromDateTimeOffset(dateTimeOffset);
         }

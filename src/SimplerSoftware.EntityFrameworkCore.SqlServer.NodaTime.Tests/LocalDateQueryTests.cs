@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using NodaTime;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -192,6 +193,20 @@ namespace SimplerSoftware.EntityFrameworkCore.SqlServer.NodaTime.Tests
                 condense(this.Db.Sql));
 
             Assert.Equal(6, raceResults.Count);
+        }
+
+        [Fact]
+        public async Task LocalDate_Contains()
+        {
+            var dates = new[]
+            {
+                new LocalDate(2024, 04, 22),
+                new LocalDate(2024, 04, 23)
+            };
+
+            var results = await this.Db.Race
+                .Where(x => dates.Contains(x.Date))
+                .ToArrayAsync();
         }
     }
 }

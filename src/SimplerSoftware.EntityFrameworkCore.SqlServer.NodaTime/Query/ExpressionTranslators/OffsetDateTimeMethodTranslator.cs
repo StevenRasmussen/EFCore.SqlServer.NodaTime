@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using NodaTime;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
@@ -35,6 +36,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(OffsetDateTimeExtensions).GetRuntimeMethod(nameof(OffsetDateTimeExtensions.TzOffset), new[] { typeof(OffsetDateTime) }), "tzoffset" },
             { typeof(OffsetDateTimeExtensions).GetRuntimeMethod(nameof(OffsetDateTimeExtensions.WeekDay), new[] { typeof(OffsetDateTime) }), "weekday" },
             { typeof(OffsetDateTimeExtensions).GetRuntimeMethod(nameof(OffsetDateTimeExtensions.Microsecond), new[] { typeof(OffsetDateTime) }), "microsecond" },
+        };
+
+        private static readonly Dictionary<MethodInfo, string> _methodInfoContainsMapping = new Dictionary<MethodInfo, string>
+        {
+            { BaseNodaTimeMethodCallTranslator.ContainsMethod.MakeGenericMethod(typeof(OffsetDateTime)) , "contains" },
         };
 
         private static readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping = new Dictionary<MethodInfo, string>
@@ -215,7 +221,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         };
 
         public OffsetDateTimeMethodTranslator(ISqlExpressionFactory sqlExpressionFactory)
-            : base(sqlExpressionFactory, _methodInfoDateAddMapping, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping)
+            : base(sqlExpressionFactory, _methodInfoDateAddMapping, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping, _methodInfoContainsMapping)
         {
         }
     }

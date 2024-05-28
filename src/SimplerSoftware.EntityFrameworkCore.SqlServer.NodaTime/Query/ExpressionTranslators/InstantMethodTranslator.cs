@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using NodaTime;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
@@ -36,6 +37,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.Nanosecond), new[] { typeof(Instant), }), "nanosecond" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.TzOffset), new[] { typeof(Instant), }), "tzoffset" },
             { typeof(InstantExtensions).GetRuntimeMethod(nameof(InstantExtensions.IsoWeek), new[] { typeof(Instant), }), "iso_week" },
+        };
+
+        private static readonly Dictionary<MethodInfo, string> _methodInfoContainsMapping = new Dictionary<MethodInfo, string>
+        {
+            { BaseNodaTimeMethodCallTranslator.ContainsMethod.MakeGenericMethod(typeof(Instant)) , "contains" },
         };
 
         private static readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping = new Dictionary<MethodInfo, string>
@@ -215,7 +221,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         };
 
         public InstantMethodTranslator(ISqlExpressionFactory sqlExpressionFactory)
-            : base(sqlExpressionFactory, null, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping)
+            : base(sqlExpressionFactory, null, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping, _methodInfoContainsMapping)
         {
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.SqlServer.NodaTime.Extensions;
 using NodaTime;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
@@ -32,6 +33,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
             { typeof(LocalDateTimeExtensions).GetRuntimeMethod(nameof(LocalDateTimeExtensions.Quarter), new[] { typeof(LocalDateTime) }), "quarter" },
             { typeof(LocalDateTimeExtensions).GetRuntimeMethod(nameof(LocalDateTimeExtensions.Week), new[] { typeof(LocalDateTime) }), "week" },
             { typeof(LocalDateTimeExtensions).GetRuntimeMethod(nameof(LocalDateTimeExtensions.Microsecond), new[] { typeof(LocalDateTime) }), "microsecond" },
+        };
+
+        private static readonly Dictionary<MethodInfo, string> _methodInfoContainsMapping = new Dictionary<MethodInfo, string>
+        {
+            { BaseNodaTimeMethodCallTranslator.ContainsMethod.MakeGenericMethod(typeof(LocalDateTime)) , "contains" },
         };
 
         private static readonly Dictionary<MethodInfo, string> _methodInfoDateDiffMapping = new Dictionary<MethodInfo, string>
@@ -211,7 +217,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         };
 
         public LocalDateTimeMethodTranslator(ISqlExpressionFactory sqlExpressionFactory)
-            : base(sqlExpressionFactory, _methodInfoDateAddMapping, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping)
+            : base(sqlExpressionFactory, _methodInfoDateAddMapping, _methodInfoDateAddExtensionMapping, _methodInfoDatePartExtensionMapping, _methodInfoDateDiffMapping, _methodInfoDateDiffBigMapping, _methodInfoContainsMapping)
         {
         }
     }

@@ -14,6 +14,11 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
         private readonly ISqlExpressionFactory _sqlExpressionFactory;
         private readonly Dictionary<string, string> _datePartMapping;
         private readonly Type _declaringType;
+        private static List<bool> _argumentsPropagateNullability = new List<bool>
+        {
+            false,
+            false,
+        };
 
         public BaseNodaTimeMemberTranslator([NotNull] ISqlExpressionFactory sqlExpressionFactory, [NotNull] Type declaringType, [NotNull] Dictionary<string, string> datePartMapping)
         {
@@ -35,7 +40,7 @@ namespace Microsoft.EntityFrameworkCore.SqlServer.Query.ExpressionTranslators
                         "DATEPART",
                         new[] { _sqlExpressionFactory.Fragment(datePart), instance },
                         false,
-                        null,
+                        _argumentsPropagateNullability,
                         returnType);
                 }
                 else if (member.Name == nameof(LocalDateTime.Date) && returnType == typeof(LocalDate))

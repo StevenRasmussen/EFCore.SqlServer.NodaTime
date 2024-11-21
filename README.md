@@ -211,6 +211,8 @@ await this.Db.RaceResult
 // FROM [RaceResult] AS [r]
 // WHERE DATEDIFF_BIG(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= CAST(100000 AS bigint)
 ```
+* 9.0.0 (Nov 20, 2024)
+  * Release for EF Core 9
 * 9.0.0-rc.1.24451.1 (Sept 27, 2024)
   * Release candidate 1 for EF Core 9
 * 8.0.1 (April 6, 2024)

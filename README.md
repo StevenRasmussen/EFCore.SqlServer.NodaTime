@@ -211,6 +211,17 @@ await this.Db.RaceResult
 // FROM [RaceResult] AS [r]
 // WHERE DATEDIFF_BIG(SECOND, [r].[StartTime], '2019-07-01T00:00:00.0000000Z') >= CAST(100000 AS bigint)
 ```
+
+## Sponsors
+
+[Entity Framework Extensions](https://entityframework-extensions.net/) and [Dapper Plus](https://dapper-plus.net/) are major sponsors and proud to contribute to the development of **EFCore.SqlServer.NodaTime**.
+
+[![Entity Framework Extensions](https://raw.githubusercontent.com/StevenRasmussen/EFCore.SqlServer.NodaTime/master/entity-framework-extensions-sponsor.png)](https://entityframework-extensions.net/bulk-insert)
+
+[![Dapper Plus](https://raw.githubusercontent.com/StevenRasmussen/EFCore.SqlServer.NodaTime/master/dapper-plus-sponsor.png)](https://dapper-plus.net/bulk-insert)
+
+## Version History
+
 * 9.1.0 (Mar 14, 2025)
   * Added support for Azure SQL DB's and the `AzureSqlDbContextOptionsBuilder`
 * 9.0.0 (Nov 20, 2024)
